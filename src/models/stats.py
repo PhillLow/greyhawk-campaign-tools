@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field, computed_field
-from typing import Dict, Optional
+from typing import Dict, Optional, List, Any
+from src.models.modifier import Modifier
 from enum import Enum
 import math
 
@@ -55,6 +56,36 @@ class Stats(BaseModel):
     intelligence: AbilityScore = AbilityScore(name=Ability.INT, score=10)
     wisdom: AbilityScore = AbilityScore(name=Ability.WIS, score=10)
     charisma: AbilityScore = AbilityScore(name=Ability.CHA, score=10)
+    
+    modifiers: List[Modifier] = []
+
+    def get_score(self, ability: Ability) -> int:
+        """Calculates final score applying modifiers."""
+        base_obj = self.get(ability)
+        base = base_obj.score
+        
+        # Check for internal overrides first (legacy support)
+        if base_obj.override is not None:
+            return base_obj.override
+            
+        # Filter external modifiers
+        # Target should match the Ability value e.g. "Strength"
+        relevant = [m for m in self.modifiers if m.target.lower() == ability.value.lower()]
+        
+        # Apply SET (override) modifiers
+        # If multiple sets exist, usually the highest one applies (e.g. 19 vs 21)
+        sets = [m for m in relevant if m.type == "set"]
+        if sets:
+            # Assumes value is int
+            base = max([int(m.value) for m in sets])
+            
+        # Apply BONUS modifiers
+        bonuses = [int(m.value) for m in relevant if m.type == "bonus"]
+        return base + sum(bonuses)
+
+    def get_mod(self, ability: Ability) -> int:
+        """Calculates modifier from the dynamic score."""
+        return (self.get_score(ability) - 10) // 2
 
     def get(self, ability: Ability) -> AbilityScore:
         mapping = {

@@ -142,29 +142,28 @@ class Dashboard:
             pb = self.char.proficiency_bonus
             
             for w in equipped_weapons:
-                # Determine Stat
-                # Simple logic: Finesse uses higher of Str/Dex. Ranged uses Dex.
-                # My DB definition for Longbow was just "Two-Handed", I should've tagged it Ranged or Ammunition.
-                # For now: Finesse -> Max(Str, Dex). Else Str.
-                is_finesse = WeaponProperty.FINESSE in w.properties
-                # TODO: Checks for Ranged property if I added it.
+                # Use new centralized mechanics methods
+                to_hit = self.char.calculate_attack_roll(w)
+                dmg_bonus = self.char.calculate_damage_roll(w)
                 
-                mod = str_mod
-                if is_finesse:
-                    mod = max(str_mod, dex_mod)
-                # Hack for "Longbow" or "Shortbow" name detection since I missed Ranged prop
-                if "bow" in w.name.lower():
-                    mod = dex_mod
-                    
-                to_hit = mod + pb
                 sign = "+" if to_hit >= 0 else ""
-                dmg_val = f"{w.damage_dice}{mod:+}" if mod != 0 else w.damage_dice
+                
+                # Format Damage: "1d8+3" 
+                # If dmg_bonus is 0, just "1d8"
+                # If negative, "1d8-1"
+                dmg_str = f"{w.damage_dice}"
+                if dmg_bonus > 0:
+                    dmg_str += f"+{dmg_bonus}"
+                elif dmg_bonus < 0:
+                    dmg_str += f"{dmg_bonus}"
+                    
+                dmg_val = f"{dmg_str} {w.damage_type.name[:1]}"
                 
                 props = ", ".join([p.value for p in w.properties])
                 if w.mastery:
                     props += f" | {w.mastery.value}"
                     
-                att_table.add_row(w.name, f"{sign}{to_hit}", f"{dmg_val} {w.damage_type.name[:1]}", props)
+                att_table.add_row(w.name, f"{sign}{to_hit}", dmg_val, props)
                 
             elements.append(att_table)
             

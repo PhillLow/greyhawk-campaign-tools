@@ -1,0 +1,168 @@
+﻿D&D 2024 PHB Character Sheet Emulator - Feature Specification
+This document outlines the complete feature set required to emulate a "D&D Beyond-like" experience for the 2024 Player's Handbook (PHB) ruleset.
+1. Character Creation (The "Builder")
+The builder must guide the user step-by-step through the process, adhering to the 2024 rules changes (e.g., Backgrounds granting Ability Scores/Feats).
+1.1 Core Selection
+* Species Selection
+   * Apply Species Traits (Darkvision, Speed, Special speeds like Fly/Swim).
+   * Apply Species-specific features (e.g., Orc Adrenaline Rush, Elf Trance).
+   * Species Spells: Logic to grant spells (e.g., Drow, Tiefling) that have 1 Free Cast per Long Rest and can be cast using regular spell slots.
+   * Note: Ability Score Increases are NO LONGER tied to Species in 2024 rules; they are now in Backgrounds.
+* Class Selection
+   * Select Class (Barbarian, Bard, etc.).
+   * Apply Hit Die.
+   * Select Primary Ability (visual guidance).
+   * Class Features (Level 1): Automate immediate grants (e.g., Weapon Masteries for martial classes, Spellcasting for casters).
+   * Multiclassing Support: Logic for prerequisites (Score >= 13) and specific proficiency handling (e.g., no Heavy Armor when dipping Fighter).
+* Background Selection (Crucial 2024 Update)
+   * Ability Score Adjustments: User chooses +2/+1 or +1/+1/+1 to specific stats defined by the Background.
+   * Origin Feat: Automatically grant the specified Level 1 Feat.
+   * Proficiencies: Grant 2 Skills and Tool proficiencies.
+   * Equipment: Grant starting package + Gold.
+* Ability Scores
+   * Calculation Methods: Standard Array, Point Buy (27 points), Manual/Rolled Entry.
+   * Validation against min/max limits (usually 20 cap for mortals).
+1.2 Progression Choices
+* Subclass Selection: (Check specific 2024 class progression; mostly Level 3).
+* Feats vs. ASI: At levels 4, 8, etc., choose between distinct Feats or Ability Score Increases.
+   * Feat Filtering: Filter by prerequisites (Level 4+, Stat requirements).
+   * Epic Boons (Level 19): Unlock specific "Epic Boon" feats only available at level 19+.
+* Spells:
+   * Source selection (Class list, Subclass specific spells).
+   * Preparation Helper: warnings for "Known" vs "Prepared" limits.
+* Proficiencies:
+   * Skill selection (Class list).
+   * Tool selection.
+   * Language selection.
+1.3 Equipment & Crafting
+* Starting Gear: Choose Class/Background packages or Gold buy.
+* Shop/Add Item: Searchable database of PHB 2024 items.
+* Weapon Mastery: For eligible classes, select which specific weapons have their Mastery properties active.
+* Crafting Engine (New 2024 Rules):
+   * Calculator: Input Target Item + Available Tools.
+   * Output: Time required (Workdays) + Gold Cost (half price).
+   * Logic: Enforce "Raw Materials" requirement and specific Tool proficiency (e.g., Herbalism Kit for Potions).
+2. The Living Character Sheet
+The sheet must be dynamic, calculating values in real-time based on state (Conditions, Equipped items, etc.).
+2.1 Core Statistics (The Header)
+* Ability Scores & Modifiers: Auto-calculated.
+* Proficiency Bonus: Scaled by Total Character Level.
+* Heroic Inspiration: Toggle.
+   * Logic: Grants ability to reroll any die (check final text restrictions, mostly d20 tests).
+   * Human Logic: Auto-grant on Long Rest for Human species.
+* Initiative: Dex mod + bonuses.
+   * Surprise Toggle: "Surprised" condition now applies Disadvantage on Initiative, not a lost turn.
+* Speed: Base + Species + Class bonuses (Unarmored Movement) + Item bonuses.
+   * Exhaustion Impact: Dynamic reduction based on Exhaustion level (Speed - [Level * 5]).
+* Armor Class (AC):
+   * Logic for Unarmored vs. Light/Medium/Heavy.
+   * Shield calculation.
+   * Conflict resolution (e.g., Monk Unarmored Defense vs. Barbarian Unarmored Defense - cannot stack).
+* Passive Perception/Investigation/Insight: 10 + Mod + Proficiency.
+* Skill Checks & Tool Synergy:
+   * Context Toggle: Next to skills, allow toggling "Using Proficiency Tool?".
+   * Logic: If User has Skill Proficiency AND Tool Proficiency relevant to the check -> Grant Advantage.
+2.2 Health & Status
+* Hit Points:
+   * Current / Max / Temporary.
+   * Auto-calc Max HP based on Con mod + Level + Class average/rolled.
+* Hit Dice: Track available/total. Feature to "Short Rest" and roll them.
+* Death Saves: Success/Fail checkboxes. Auto-reset on stabilization/healing.
+* Exhaustion (2024 Rules):
+   * Track 6 Levels (not 10).
+   * Penalty Calculation: Apply -[Level * 2] to all d20 Tests (Attacks, Saves, Checks).
+   * Speed Calculation: Apply -[Level * 5] ft to speed.
+   * Death: Trigger 'Dead' status at Level 6.
+* Conditions:
+   * List of standard conditions (Blinded, Charmed, Invisible, etc.).
+   * Effect Automation: Toggling "Prone" implies Disadvantage on attacks/movement cost.
+2.3 Actions & Combat
+* Attacks:
+   * Pre-calculated "To Hit" (+Prof +Str/Dex +Magic -Exhaustion).
+   * Pre-calculated "Damage" (Dice +Mod +Magic).
+   * Ammunition: Auto-decrement ammo. "End Combat" button to auto-recover 50% of spent ammo.
+* Weapon Mastery Integration:
+   * Property Display: Display "Push", "Sap", "Slow" on the attack entry if active.
+   * "Nick" Mastery Logic: If active on Light weapon, dynamically move the off-hand attack from Bonus Action list to Main Action list (allows dual wielding without burning BA).
+* Save DC Calculator (Grapple/Shove):
+   * Correction: Grapple/Shove are no longer Skill Contests.
+   * Formula: Display DC = 8 + Str Mod + Prof.
+   * Monk Exception: Allow swapping Str for Dex in this calculation.
+* Actions Browser:
+   * Action / Bonus Action / Reaction / Free Object Interaction filters.
+   * Utilize Action: Specific category for object interactions (Caltrops, Ball Bearings, Potions). Display specific Utilize DC for items.
+   * Special Actions: Dash, Disengage, Dodge, Help, Hide, Ready, Search, Study, Influence.
+2.4 Spellcasting
+* Slots: Grid of Used/Total slots per level.
+* Casting Modifiers: Spell Save DC, Spell Attack Bonus.
+* Spell List:
+   * Categorized by Level.
+   * Indicators for Concentration, Components (V,S,M).
+   * Upcasting: Quick view of damage at higher tiers.
+* Ritual Logic (2024 Update):
+   * Universal Rituals: Allow any class to cast a spell as Ritual if it has the tag and is Prepared.
+   * Wizard Exception: Allow Wizards to cast Rituals from their book without preparation.
+* Resource Tracking: Sorcery Points, Channel Divinity, Lay on Hands pool.
+2.5 Inventory & Encumbrance
+* Weight Calculation: Current vs. Capacity (Str * 15).
+* Encumbrance Rules: Visual warning (Speed drop) if variant rules active.
+* Attunement: Max 3 slots. Prevent benefits if slot not allocated.
+* Currency: CP, SP, EP, GP, PP handling.
+2.6 Description & Notes
+* Traits/Ideals/Bonds/Flaws.
+* Notes Section: Free text.
+* Allies/Organizations.
+3. Complex Sub-Systems (The "Edge Cases")
+These are the features that separate a basic calculator from a full emulator.
+3.1 Shapeshifting & Transformations
+* Wild Shape (Druid):
+   * Browser for Beast stat blocks eligible by level (CR limits, Fly/Swim speed limits).
+   * Stat Merging: Replace STR/DEX/CON, keep INT/WIS/CHA. Adopt Beast HP/Hit Dice logic.
+   * Feature Retention: Logic to keep Class Features/Feats if the beast form allows it.
+* Polymorph/Shapechange: Similar logic but fully replacing mental stats where applicable.
+* Hypothetical Forms: Support for "Starry Form" (Druid) or "Form of Dread" (Warlock) which are overlays rather than replacements.
+3.2 Minions & Companions
+* Pet Management: Separate mini-sheet for Ranger Companion, Find Steed, or Homunculus.
+* Scaling: Auto-scale pet stats based on Player Level or PB (Proficiency Bonus).
+* Summon Spells: "Summon Undead", "Summon Beast" Tasha-style stat blocks that scale with Spell Level (2024 standardized).
+3.3 Multiclassing Complexities
+* Spell Slot Calculator:
+   * Combined Caster Level (Bard + Cleric).
+   * Half-Caster math (Paladin/Ranger).
+   * Third-Caster math (Arcane Trickster).
+   * Pact Magic: Keep Warlock slots separate from Spellcasting slots but allow cross-usage.
+4. Application Logic & Utilities
+This is the backend logic required to support the UI.
+* Stacking Rules: Prevent double proficiency (e.g., Skills) unless Expert. Correctly handle AC calculation preferences.
+* Modifier System: A robust system where an object (Feat, Item, Spell Effect) can inject a modifier into a statistic.
+   * Example: "Gauntlets of Ogre Power" sets STR score to 19.
+   * Example: "Bless" adds 1d4 to Saving Throws and Attacks.
+* Rest System:
+   * Short Rest: Reset Warlock slots, Monk Ki, Fighter Action Surge. Roll Hit Dice.
+   * Long Rest: Reset HP, Hit Dice (half max), Spell Slots, Long Rest cooldowns. Reduce Exhaustion by 1 level. Reset Human Heroic Inspiration.
+5. Meta-Features (App Level)
+5.1 Persistence
+* Local Storage: JSON save files.
+5.2 Customization
+* Portrait: Image upload/crop.
+* Theme: Dark/Light mode.
+6. Metadata & Database Needs
+To support the 2024 nuances, the database schema requires specific fields:
+* Database of Spells:
+   * Standard fields (Name, Level, School, etc.).
+   * Tags: Add "Monster" (for Summon spells) and "Emanation" (new Area of Effect type).
+* Database of Items:
+   * Utilize DC: Integer field for items like Manacles or Hunting Traps.
+   * Crafting Group: (Potion, Scroll, Weapon, Armor, Wondrous) to determine crafting time/cost.
+   * Weapon Mastery: Link weapons to their specific properties (Cleave, Graze, Nick, Push, Sap, Slow, Topple, Vex).
+* Database of Classes:
+   * Spell Preparation Type: (Prepared vs Known vs Spellbook).
+* Database of Features: Class/Subclass features with "Level Unlocked" triggers.
+7. 2024 PHB Specific Nuances TO-DO List
+* [ ] Weapon Mastery "Nick": Implement logic to move off-hand attack from Bonus Action to Action when this property is active.
+* [ ] New Exhaustion: Implement 6-level system with -2 penalty per level.
+* [ ] Grapple/Shove: Implement Save DC calculator (8+Str+Prof) replacing old Contest logic.
+* [ ] Tool Synergy: Implement logic to check for "Tool + Skill" overlap and grant Advantage.
+* [ ] Crafting: Build the Time/Cost calculator based on Item Rarity and Tool proficiency.
+* [ ] Stealth/Hiding: New Condition "Invisible" logic when successfully creating the Hide action.
+* [ ] Heroic Inspiration: Ensure logic supports rerolling "any die" (or d20 test based on final text) and resets on Long Rest for Humans.

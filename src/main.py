@@ -53,6 +53,7 @@ def game_loop(char):
         action = questionary.select(
             "Actions:",
             choices=[
+                "Combat / Attacks",
                 "Edit HP (Damage/Heal)",
                 "Manage Exhaustion",
                 "Manage Status (Cond/DS/Insp)",
@@ -66,7 +67,9 @@ def game_loop(char):
             ]
         ).ask()
         
-        if action == "Edit HP (Damage/Heal)":
+        if action == "Combat / Attacks":
+             manage_combat(char)
+        elif action == "Edit HP (Damage/Heal)":
             manage_hp(char)
         elif action == "Manage Exhaustion":
              # ... existing ...
@@ -92,6 +95,125 @@ def game_loop(char):
              questionary.text("Press Enter to continue...").ask()
         elif action == "Return to Main Menu":
             break
+
+def manage_combat(char):
+    """Interactive Combat Menu."""
+    from src.models.equipment import Weapon, WeaponMastery
+    while True:
+        console.clear()
+        console.print("[bold red]Combat & Attacks[/bold red]")
+        
+        equipped = char.get_equipped_weapons()
+        opts = []
+        for w in equipped:
+            label = f"{w.name} (Hit: +{char.calculate_attack_roll(w)})"
+            if w.mastery == WeaponMastery.NICK:
+                label += " [Nick]"
+            opts.append(label)
+            
+        opts.append("Unarmed Strike")
+        opts.append("Back")
+        
+        choice = questionary.select("Select Weapon:", choices=opts).ask()
+        
+        if choice == "Back":
+            break
+            
+        weapon = None
+        if choice == "Unarmed Strike":
+            # Creating a dummy weapon for Unarmed
+            from src.models.equipment import DamageType, WeaponProperty
+            weapon = Weapon(name="Unarmed Strike", damage_dice="1", damage_type=DamageType.BLUDGEONING, range_normal=5)
+            # Unarmed uses Str usually, but Monks use Dex. Our generic logic defaults to Str.
+        else:
+             # Find weapon by name logic (hacky string match from opts)
+             # Better: assume unique names or map index.
+             w_name = choice.split(" (Hit:")[0]
+             for w in equipped:
+                 if w.name == w_name:
+                     weapon = w
+                     break
+        
+        if weapon:
+             # Check Ammunition
+             from src.models.equipment import WeaponProperty, ItemType
+             if WeaponProperty.AMMUNITION in weapon.properties:
+                 # Find ammo
+                 ammo_keywords = ["Arrow", "Bolt", "Bullet", "Shot", "Ammunition"]
+                 ammo_item = None
+                 for item in char.inventory:
+                     if item.item_type == ItemType.GEAR and any(k in item.name for k in ammo_keywords) and item.quantity > 0:
+                         ammo_item = item
+                         break
+                 
+                 if ammo_item:
+                     ammo_item.quantity -= 1
+                     console.print(f"[green]Used {ammo_item.name}. Remaining: {ammo_item.quantity}[/green]")
+                 else:
+                     console.print("[bold red]Click! Out of Ammunition![/bold red]")
+                     questionary.text("Press Enter...").ask()
+                     continue
+
+             # Roll Attack
+             to_hit_mod = char.calculate_attack_roll(weapon)
+             adv_state = char.get_advantage_state("attack")
+             
+             import random
+             d1 = random.randint(1, 20)
+             d2 = random.randint(1, 20)
+             
+             d20 = d1
+             
+             if adv_state == "advantage":
+                 d20 = max(d1, d2)
+                 console.print(f"[green]Advantage! Rolled {d1}, {d2} -> Keeping {d20}[/green]")
+             elif adv_state == "disadvantage":
+                 d20 = min(d1, d2)
+                 console.print(f"[red]Disadvantage! Rolled {d1}, {d2} -> Keeping {d20}[/red]")
+             else:
+                 console.print(f"Rolled: {d20}")
+             
+             crit = (d20 == 20)
+             fail = (d20 == 1)
+             
+             total_hit = d20 + to_hit_mod
+             
+             console.print(f"\n[bold]Attack Roll[/bold]: d20({d20}) + {to_hit_mod} = [bold cyan]{total_hit}[/bold cyan]")
+             if crit: console.print("[bold yellow]CRITICAL HIT![/bold yellow]")
+             if fail: console.print("[bold red]CRITICAL MISS![/bold red]")
+             
+             # Roll Damage
+             if not fail:
+                 dmg_mod = char.calculate_damage_roll(weapon)
+                 dice_str = weapon.damage_dice
+                 # Parse dice (e.g. "1d8")
+                 try:
+                     num_dice, sides = map(int, dice_str.split('d'))
+                 except:
+                     num_dice, sides = 1, 1 # Fixed 1 dmg
+                 
+                 dmg_roll = 0
+                 rolls = []
+                 
+                 real_dice = num_dice * 2 if crit else num_dice
+                 
+                 for _ in range(real_dice):
+                     r = random.randint(1, sides)
+                     rolls.append(r)
+                     dmg_roll += r
+                     
+                 total_dmg = dmg_roll + dmg_mod
+                 if total_dmg < 0: total_dmg = 0 # Can't heal with sword
+                 
+                 console.print(f"[bold]Damage Roll[/bold]: {dice_str} ({rolls}) + {dmg_mod} = [bold red]{total_dmg} {weapon.damage_type.name.title()}[/bold red]")
+                 
+                 # Show Mastery
+                 if weapon.mastery:
+                     console.print(f"[italic]Mastery ({weapon.mastery.value}): Apply effect if applicable.[/italic]")
+                     if weapon.mastery == WeaponMastery.NICK:
+                        console.print("[bold cyan]Nick Active: Off-hand attack valid specific for Action.[/bold cyan]")
+             
+             questionary.text("Press Enter...").ask()
 
 def manage_status(char):
     while True:
@@ -171,6 +293,18 @@ def manage_magic(char):
             for lvl, count in max_slots.items():
                 curr = current.get(lvl, 0)
                 console.print(f"Level {lvl}: {curr}/{count}")
+        
+        # Show Pact Slots
+        max_pact_lvl, max_pact_count = char.max_pact_slots
+        if max_pact_count > 0:
+            console.print(f"\n[bold purple]Pact Magic (Lvl {max_pact_lvl}):[/bold purple] {char.current_pact_slots}/{max_pact_count}")
+        
+        # Show Free Casts
+        if char.free_casts:
+            console.print(f"\n[bold green]Free Casts:[/bold green]")
+            for spell, count in char.free_casts.items():
+                if count > 0:
+                    console.print(f"- {spell}: {count}")
 
         choice = questionary.select(
             "Magic Actions:",
@@ -180,24 +314,96 @@ def manage_magic(char):
         if choice == "Back":
             break
         elif choice == "Cast Spell (Use Slot)":
-             if not max_slots:
-                 continue
-             lvl_str = questionary.text("Slot Level to use (1-9):", validate=lambda t: t.isdigit() and 1 <= int(t) <= 9).ask()
-             if not lvl_str: continue
-             lvl = int(lvl_str)
+             max_pact_lvl, max_pact_count = char.max_pact_slots
              
-             cur_val = current.get(lvl, 0)
-             if cur_val > 0:
-                 char.current_spell_slots[lvl] = cur_val - 1
-                 console.print(f"[green]Used Level {lvl} slot. Remaining: {char.current_spell_slots[lvl]}[/green]")
+             if not max_slots and max_pact_count == 0:
+                 console.print("[red]No slots available.[/red]")
                  questionary.text("Press Enter...").ask()
-             else:
-                 console.print(f"[red]No Level {lvl} slots remaining![/red]")
-                 questionary.text("Press Enter...").ask()
+                 continue
                  
-        elif choice == "Prepare/Learn Spell":
-             console.print("[dim]Spell Database not fully populated. Feature coming soon.[/dim]")
+             # Build choices
+             slot_opts = []
+             
+             # Free Casts
+             for spell, count in char.free_casts.items():
+                 if count > 0:
+                     slot_opts.append(f"Free Cast: {spell}")
+                     
+             # Rituals (from Spellbook)
+             known_rituals = [s for s in char.spellbook if s.ritual]
+             for s in known_rituals:
+                 slot_opts.append(f"Cast Ritual: {s.name}")
+
+             if max_pact_count > 0 and char.current_pact_slots > 0:
+                 slot_opts.append(f"Pact Slot (Level {max_pact_lvl})")
+             
+             for lvl, mx in max_slots.items():
+                 if current.get(lvl, 0) > 0:
+                     slot_opts.append(f"Level {lvl} Slot")
+                     
+             if not slot_opts:
+                 console.print("[red]No slots or free casts available![/red]")
+                 questionary.text("Press Enter...").ask()
+                 continue
+                 
+             slot_choice = questionary.select("Select Casting Method:", choices=slot_opts + ["Cancel"]).ask()
+             
+             if slot_choice == "Cancel": continue
+             
+             if slot_choice.startswith("Free Cast:"):
+                 s_name = slot_choice.replace("Free Cast: ", "")
+                 char.free_casts[s_name] -= 1
+                 console.print(f"[green]Used Free Cast of {s_name}.[/green]")
+                 
+             elif slot_choice.startswith("Cast Ritual:"):
+                 s_name = slot_choice.replace("Cast Ritual: ", "")
+                 console.print(f"[green]Ritual Casting: {s_name}...[/green]")
+                 console.print("[italic]10 Minutes pass...[/italic]")
+                 console.print(f"[green]Spell {s_name} cast successfully (No slot used).[/green]")
+                 
+             elif "Pact" in slot_choice:
+                 char.current_pact_slots -= 1
+                 console.print(f"[green]Used Pact Slot.[/green]")
+             else:
+                 # "Level X Slot"
+                 lvl = int(slot_choice.split(" ")[1])
+                 char.current_spell_slots[lvl] -= 1
+                 console.print(f"[green]Used Level {lvl} Slot.[/green]")
+             
              questionary.text("Press Enter...").ask()
+                  
+        elif choice == "Prepare/Learn Spell":
+             from src.models.spell_database import SpellDatabase
+             # Filter by class
+             # For multiclass, show union or ask which class? 
+             # Simplification: Show ALL available based on classes.
+             
+             available = []
+             known_names = [s.name for s in char.spellbook]
+             
+             for cls in char.classes:
+                 cname = cls.character_class.name
+                 spells = SpellDatabase.get_available_spells(cname)
+                 for s in spells:
+                     if s.name not in known_names and s not in available:
+                         available.append(s)
+                         
+             if not available:
+                 console.print("[yellow]No new spells available to learn (or DB empty).[/yellow]")
+                 questionary.text("Press Enter...").ask()
+                 continue
+                 
+             spell_opts = [f"{s.name} (Lvl {s.level})" for s in available]
+             picked = questionary.checkbox("Select Spells to Learn:", choices=spell_opts).ask()
+             
+             for p in picked:
+                 s_name = p.split(" (")[0]
+                 spell = SpellDatabase.get_spell(s_name)
+                 if spell:
+                     char.spellbook.append(spell)
+                     
+             console.print(f"[green]Learned {len(picked)} spells.[/green]")
+             
 
 def manage_transformation(char):
     from src.models.transformation import Transformation
@@ -287,7 +493,7 @@ def manage_inventory(char):
 
         choice = questionary.select(
             "Inventory Actions:",
-            choices=["Add Item from Database", "Equip Item", "Unequip Item", "Manage Currency", "Back"]
+            choices=["Add Item from Database", "Craft Item", "Equip Item", "Unequip Item", "Manage Currency", "Back"]
         ).ask()
         
         if choice == "Back":
@@ -332,6 +538,51 @@ def manage_inventory(char):
             if selection != "Cancel":
                 char.unequip_item(selection)
                 console.print(f"[green]Unequipped {selection}.[/green]")
+        elif choice == "Craft Item":
+            manage_crafting(char)
+
+def manage_crafting(char):
+    from src.engine.crafting import CraftingEngine
+    from src.models.item_database import ItemDatabase
+    
+    console.print("[bold]Crafting Station[/bold]")
+    console.print(f"Funds: {char.gp} gp")
+    
+    # Check Background Tool
+    console.print(f"Known Tools: {char.background.tool_proficiency}")
+    
+    # Simplification: Let user search for ANY item to see if they can craft it.
+    item_name = questionary.text("Search Item to Craft (e.g. Potion of Healing):").ask()
+    if not item_name: return
+    
+    item = ItemDatabase.get_item(item_name)
+    if not item:
+        console.print("[red]Item not found in database.[/red]")
+        questionary.text("Press Enter...").ask()
+        return
+        
+    console.print(f"Target: [bold]{item.name}[/bold] (Market: {item.cost_gp} gp)")
+    
+    # Check
+    can, msg = CraftingEngine.can_craft(char, item)
+    cost = CraftingEngine.calculate_cost(item)
+    days = CraftingEngine.calculate_days(item)
+    
+    if not can:
+        console.print(f"[red]Cannot Craft:[/red] {msg}")
+    else:
+        console.print(f"[green]Available![/green]")
+        console.print(f"Crafting Cost: {cost} gp")
+        console.print(f"Time Required: {days} days")
+        
+        if questionary.confirm("Start Crafting project? (Deducts Gold immediately)").ask():
+            res = CraftingEngine.craft_item(char, item)
+            if res.success:
+                console.print(f"[bold green]{res.message}[/bold green]")
+            else:
+                console.print(f"[red]Error: {res.message}[/red]")
+                
+    questionary.text("Press Enter...").ask()
 
 def manage_hp(char):
     val = questionary.text("Enter HP change (positive to heal, negative to damage):", 
@@ -349,15 +600,39 @@ def manage_hp(char):
 
 def manage_rest(char):
     rest_type = questionary.select("Rest Type:", choices=["Short Rest", "Long Rest", "Cancel"]).ask()
+    
     if rest_type == "Short Rest":
-        # Placeholder: Hit Die logic would go here
-        console.print("[yellow]Short Rest: Warlock slots recovered (TODO). You can roll Hit Dice manually for now.[/yellow]")
-        questionary.text("Press Enter...").ask()
+        char.perform_short_rest()
+        console.print("[green]Short Rest: Cooldowns reset.[/green]")
+        
+        while True:
+            # Show HD status
+            console.print("\n[bold]Hit Dice:[/bold]")
+            if not char.current_hit_dice:
+                console.print("None available.")
+            else:
+                for cls, count in char.current_hit_dice.items():
+                    console.print(f"- {cls}: {count} remaining")
+            
+            console.print(f"Current HP: {char.current_hp}/{char.max_hp}")
+            
+            # Ask to roll
+            opts = [f"Roll {cls} Hit Die" for cls, count in char.current_hit_dice.items() if count > 0]
+            opts.append("Finish Rest")
+            
+            choice = questionary.select("Short Rest Actions:", choices=opts).ask()
+            
+            if choice == "Finish Rest":
+                break
+            
+            # Parse choice "Roll Wizard Hit Die"
+            cls_target = choice.replace("Roll ", "").replace(" Hit Die", "")
+            healed = char.roll_hit_die(cls_target)
+            console.print(f"[green]Rolled Hit Die. Healed {healed} HP.[/green]")
+            
     elif rest_type == "Long Rest":
-        char.current_hp = char.max_hp
-        char.stats.current_hit_dice = char.level # hypothetical field
-        char.restore_spell_slots() # NEW
-        console.print("[green]Long Rest: HP and Spell Slots fully restored![/green]")
+        char.perform_long_rest()
+        console.print(f"[green]Long Rest: HP, Spell Slots, Hit Dice, and Exhaustion updated![/green]")
         questionary.text("Press Enter...").ask()
 
 if __name__ == "__main__":
