@@ -12,6 +12,59 @@ class CharacterBuilder:
     def __init__(self):
         self.character = Character()
 
+    def _handle_feat_selection(self, feat_name: str):
+        """Checks if a feat requires sub-selection (like Magic Initiate) and prompts user."""
+        if "Magic Initiate" in feat_name:
+            # Format: "Magic Initiate (Class)" or just "Magic Initiate"
+            # Extract class
+            target_cls = None
+            if "(" in feat_name:
+                target_cls = feat_name.split("(")[1].replace(")", "")
+            else:
+                # Prompt if generic? 2024 usually specifies.
+                # If undefined, ask user.
+                # For now assume defined or fallback.
+                pass
+                
+            if target_cls:
+                console.print(f"\n[bold purple]Magic Initiate ({target_cls}): Select Spells[/bold purple]")
+                from src.models.spell_database import SpellDatabase
+                from src.models.class_model import ClassName
+                
+                try:
+                    c_enum = ClassName(target_cls)
+                    
+                    # 2 Cantrips
+                    cantrips = SpellDatabase.get_available_spells(c_enum, level=0)
+                    c_names = [s.name for s in cantrips]
+                    c_choice = questionary.checkbox(
+                        f"Select 2 {target_cls} Cantrips:",
+                        choices=c_names,
+                        validate=lambda c: True if len(c) == 2 else "Select exactly 2."
+                    ).ask()
+                    
+                    for n in c_choice:
+                        s = SpellDatabase.get_spell(n)
+                        if s: self.character.spellbook.append(s)
+                        
+                    # 1 Level 1 Spell
+                    lvl1 = SpellDatabase.get_available_spells(c_enum, level=1)
+                    l1_names = [s.name for s in lvl1]
+                    l1_choice = questionary.select(
+                        f"Select 1 Level 1 {target_cls} Spell:",
+                        choices=l1_names
+                    ).ask()
+                    
+                    s_l1 = SpellDatabase.get_spell(l1_choice)
+                    if s_l1:
+                        self.character.spellbook.append(s_l1)
+                        # Add Free Cast
+                        self.character.free_casts[s_l1.name] = 1
+                        console.print(f"[green]Learned {l1_choice} (Free Cast x1/LR) and cantrips.[/green]")
+                        
+                except ValueError:
+                    console.print(f"[yellow]Could not parse class {target_cls} for Magic Initiate.[/yellow]")
+
     def run_cli_flow(self) -> Character:
         """Runs the interactive CLI to build a character."""
         console.print("[bold green]Welcome to the D&D 2024 Character Builder[/bold green]")
@@ -26,6 +79,33 @@ class CharacterBuilder:
         ).ask()
         self.character.species = Species.get_template(SpeciesName(species_choice))
         
+        # 2a. Lineage / Legacy Selection
+        if self.character.species.lineages:
+            lineage_choice = questionary.select(
+                f"Choose your {self.character.species.name.value} Lineage/Ancestry/Legacy:",
+                choices=list(self.character.species.lineages.keys())
+            ).ask()
+            self.character.species.apply_lineage(lineage_choice)
+            console.print(f"[green]Applied {lineage_choice} traits.[/green]")
+        
+        # 2b. Human Bonus Feat
+        if self.character.species.name == SpeciesName.HUMAN:
+            console.print("\n[bold]Human Heritage:[/bold] You get one additional Origin Feat.")
+            all_origin = [f for f in FeatDatabase.get_origin_feats()] # Assuming we want to show all to pick from
+            # Exclude background ones? Not necessarily, but duplicates are usually wasted.
+            origin_names = [f.name for f in all_origin]
+            
+            human_feat_choice = questionary.select(
+                "Select Bonus Origin Feat:",
+                choices=origin_names
+            ).ask()
+            
+            feat = FeatDatabase.get_feat(human_feat_choice)
+            if feat:
+                self.character.feats.append(feat)
+                console.print(f"[green]Added Human Bonus Feat: {feat.name}[/green]")
+                self._handle_feat_selection(feat.name)
+        
         # 3. Class (Primary)
         class_choice = questionary.select(
             "Select your Class:",
@@ -34,7 +114,7 @@ class CharacterBuilder:
         
         from src.models.class_model import ClassLevel
         primary_class_template = CharacterClass.get_template(ClassName(class_choice))
-        self.character.classes = [ClassLevel(character_class=primary_class_template, level=1)]
+        self.character.classes = [ClassLevel(character_class=primary_class_template.model_dump(), level=1)]
         
         # 4. Background (2024 Rules)
         bg_choice = questionary.select(
@@ -43,16 +123,69 @@ class CharacterBuilder:
         ).ask()
         self.character.background = Background.get_template(BackgroundName(bg_choice))
         # Grant Origin Feat
-        origin_feat = FeatDatabase.get_feat(self.character.background.origin_feat)
+        # Logic to handle "Magic Initiate (Wizard)" etc.
+        feat_name_full = self.character.background.origin_feat
+        origin_feat = FeatDatabase.get_feat(feat_name_full)
+        
+        # If not found, try splitting (e.g. "Magic Initiate (Wizard)" -> "Magic Initiate")
+        if not origin_feat and "(" in feat_name_full:
+            base_name = feat_name_full.split("(")[0].strip()
+            origin_feat = FeatDatabase.get_feat(base_name)
+            
         if origin_feat:
-            self.character.feats.append(origin_feat)
+            # We add the generic feat object, but we trigger selection with the FULL name
+            # So the handler knows which class to pick for Magic Initiate
+            # Ideally we'd rename the feat instance to the full name too for the sheet.
+            feat_clone = origin_feat.model_copy()
+            feat_clone.name = feat_name_full # Update name to be specific
+            
+            self.character.feats.append(feat_clone)
+            self._handle_feat_selection(feat_name_full)
         
         # Grant Background Skills
         self.character.skills.extend(self.character.background.skills)
         console.print(f"[dim]Background grants: {self.character.background.origin_feat} feat and Skills: {', '.join(self.character.background.skills)}[/dim]")
         
-        # 4b. Class Skills
+        # 4b. Class Features (Fighting Style)
+        # Check if primary class has Fighting Style
         cls_def = primary_class_template
+        fs_feature = next((f for f in cls_def.features if f.name == "Fighting Style"), None)
+        if fs_feature:
+            console.print("\n[bold]Class Feature: Fighting Style[/bold]")
+            styles = FeatDatabase.get_fighting_style_feats()
+            style_names = [s.name for s in styles]
+            
+            fs_choice = questionary.select(
+                "Choose your Fighting Style:",
+                choices=style_names
+            ).ask()
+            
+            fs_feat = FeatDatabase.get_feat(fs_choice)
+            if fs_feat:
+                self.character.feats.append(fs_feat)
+                console.print(f"[green]Added Fighting Style: {fs_feat.name}[/green]")
+        
+        # 4c. Weapon Mastery Selection
+        if cls_def.num_weapon_masteries > 0:
+            console.print(f"\n[bold]Weapon Mastery[/bold]: Select {cls_def.num_weapon_masteries} weapons to master.")
+            from src.models.item_database import ItemDatabase
+            # Show all weapons or filter?
+            # 2024: "You choose... from the weapons in the Equipment chapter"
+            # We'll just list all weapons in our DB.
+            all_weapons = [i for i in ItemDatabase.get_all_items() if i.item_type.value == "Weapon"]
+            # Unique names
+            w_names = sorted(list(set(w.name for w in all_weapons)))
+            
+            mastery_choices = questionary.checkbox(
+                f"Select {cls_def.num_weapon_masteries} Weapons:",
+                choices=w_names,
+                validate=lambda c: True if len(c) == cls_def.num_weapon_masteries else f"Please select exactly {cls_def.num_weapon_masteries} weapons."
+            ).ask()
+            
+            self.character.weapon_masteries.extend(mastery_choices)
+            console.print(f"[green]Masteries learned: {', '.join(mastery_choices)}[/green]")
+        
+        # 4d. Class Skills
         avail_skills = [s for s in cls_def.skill_choices if s not in self.character.skills]
         
         if avail_skills:
@@ -182,6 +315,11 @@ class CharacterBuilder:
             # Cantrips
             # Rule of thumb: 3 Cantrips at lvl 1 (varies, but simple for now)
             cantrips_avail = SpellDatabase.get_available_spells(primary_cls_name, level=0)
+            
+            # Filter already known spells (e.g. from Magic Initiate)
+            known_names = {s.name for s in self.character.spellbook}
+            cantrips_avail = [s for s in cantrips_avail if s.name not in known_names]
+            
             if cantrips_avail:
                 cantrip_names = [s.name for s in cantrips_avail]
                 choices = questionary.checkbox(
@@ -197,6 +335,10 @@ class CharacterBuilder:
             # Wizard: 6 in book. Cleric: All prepared? 
             # Simplified: Select 4 to start.
             lvl1_avail = SpellDatabase.get_available_spells(primary_cls_name, level=1)
+            
+            # Filter known
+            lvl1_avail = [s for s in lvl1_avail if s.name not in known_names]
+            
             if lvl1_avail:
                 l1_names = [s.name for s in lvl1_avail]
                 choices = questionary.checkbox(
@@ -209,6 +351,10 @@ class CharacterBuilder:
                     if s: self.character.spellbook.append(s)
                     
             console.print(f"[green]Added {len(self.character.spellbook)} spells to spellbook.[/green]")
+
+        # Sync HP
+        self.character.current_hp = self.character.max_hp
+        console.print(f"[bold]HP Initialized to {self.character.current_hp}/{self.character.max_hp}[/bold]")
 
         console.print("[bold blue]Character Created![/bold blue]")
         return self.character

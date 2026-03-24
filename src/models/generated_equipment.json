@@ -1,0 +1,595 @@
+{
+    "Weapons": [
+        {
+            "name": "Copper Piece (CP)",
+            "damage_dice": "1/100</td>\n",
+            "damage_type": "</TR>\n    <TR>\n      <TD>SILVER PIECE (SP)",
+            "properties": [
+                "1/10</td>\n    </tr>\n    <tr>\n      <td>Electrum Piece (EP)"
+            ],
+            "mastery": "1/2</TD>\n    </TR>\n    <TR>\n      <TD>GOLD PIECE (GP)",
+            "weight": 1.0,
+            "cost_gp": 10.0
+        },
+        {
+            "name": "Club",
+            "damage_dice": "1d4",
+            "damage_type": "BLUDGEONING",
+            "properties": [
+                "Light"
+            ],
+            "mastery": "SLOW",
+            "weight": 2.0,
+            "cost_gp": 0.1
+        },
+        {
+            "name": "Dagger",
+            "damage_dice": "1d4",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Finesse",
+                "Light",
+                "Thrown (Range 20/60)"
+            ],
+            "mastery": "NICK",
+            "weight": 1.0,
+            "cost_gp": 2.0
+        },
+        {
+            "name": "Greatclub",
+            "damage_dice": "1d8",
+            "damage_type": "BLUDGEONING",
+            "properties": [
+                "Two-Handed"
+            ],
+            "mastery": "PUSH",
+            "weight": 10.0,
+            "cost_gp": 0.2
+        },
+        {
+            "name": "Handaxe",
+            "damage_dice": "1d6",
+            "damage_type": "SLASHING",
+            "properties": [
+                "Light",
+                "Thrown (Range 20/60)"
+            ],
+            "mastery": "VEX",
+            "weight": 2.0,
+            "cost_gp": 5.0
+        },
+        {
+            "name": "Javelin",
+            "damage_dice": "1d6",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Thrown (Range 30/120)"
+            ],
+            "mastery": "SLOW",
+            "weight": 2.0,
+            "cost_gp": 0.5
+        },
+        {
+            "name": "Light Hammer",
+            "damage_dice": "1d4",
+            "damage_type": "BLUDGEONING",
+            "properties": [
+                "Light",
+                "Thrown (Range 20/60)"
+            ],
+            "mastery": "NICK",
+            "weight": 2.0,
+            "cost_gp": 2.0
+        },
+        {
+            "name": "Mace",
+            "damage_dice": "1d6",
+            "damage_type": "BLUDGEONING",
+            "properties": [],
+            "mastery": "SAP",
+            "weight": 4.0,
+            "cost_gp": 5.0
+        },
+        {
+            "name": "Quarterstaff",
+            "damage_dice": "1d6",
+            "damage_type": "BLUDGEONING",
+            "properties": [
+                "Versatile (1d8)"
+            ],
+            "mastery": "TOPPLE",
+            "weight": 4.0,
+            "cost_gp": 0.2
+        },
+        {
+            "name": "Sickle",
+            "damage_dice": "1d4",
+            "damage_type": "SLASHING",
+            "properties": [
+                "Light"
+            ],
+            "mastery": "NICK",
+            "weight": 2.0,
+            "cost_gp": 1.0
+        },
+        {
+            "name": "Spear",
+            "damage_dice": "1d6",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Thrown (Range 20/60)",
+                "Versatile (1d8)"
+            ],
+            "mastery": "SAP",
+            "weight": 3.0,
+            "cost_gp": 1.0
+        },
+        {
+            "name": "Dart",
+            "damage_dice": "1d4",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Finesse",
+                "Thrown (Range 20/60)"
+            ],
+            "mastery": "VEX",
+            "weight": 0.25,
+            "cost_gp": 0.05
+        },
+        {
+            "name": "Light Crossbow",
+            "damage_dice": "1d8",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Ammunition (Range 80/320; Bolt)",
+                "Loading",
+                "Two-Handed"
+            ],
+            "mastery": "SLOW",
+            "weight": 5.0,
+            "cost_gp": 25.0
+        },
+        {
+            "name": "Shortbow",
+            "damage_dice": "1d6",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Ammunition (Range 80/320; Arrow)",
+                "Two-Handed"
+            ],
+            "mastery": "VEX",
+            "weight": 2.0,
+            "cost_gp": 25.0
+        },
+        {
+            "name": "Sling",
+            "damage_dice": "1d4",
+            "damage_type": "BLUDGEONING",
+            "properties": [
+                "Ammunition (Range 30/120; Bullet)"
+            ],
+            "mastery": "SLOW",
+            "weight": 0.0,
+            "cost_gp": 0.1
+        },
+        {
+            "name": "Battleaxe",
+            "damage_dice": "1d8",
+            "damage_type": "SLASHING",
+            "properties": [
+                "Versatile (1d10)"
+            ],
+            "mastery": "TOPPLE",
+            "weight": 4.0,
+            "cost_gp": 10.0
+        },
+        {
+            "name": "Flail",
+            "damage_dice": "1d8",
+            "damage_type": "BLUDGEONING",
+            "properties": [],
+            "mastery": "SAP",
+            "weight": 2.0,
+            "cost_gp": 10.0
+        },
+        {
+            "name": "Glaive",
+            "damage_dice": "1d10",
+            "damage_type": "SLASHING",
+            "properties": [
+                "Heavy",
+                "Reach",
+                "Two-Handed"
+            ],
+            "mastery": "GRAZE",
+            "weight": 6.0,
+            "cost_gp": 20.0
+        },
+        {
+            "name": "Greataxe",
+            "damage_dice": "1d12",
+            "damage_type": "SLASHING",
+            "properties": [
+                "Heavy",
+                "Two-Handed"
+            ],
+            "mastery": "CLEAVE",
+            "weight": 7.0,
+            "cost_gp": 30.0
+        },
+        {
+            "name": "Greatsword",
+            "damage_dice": "2d6",
+            "damage_type": "SLASHING",
+            "properties": [
+                "Heavy",
+                "Two-Handed"
+            ],
+            "mastery": "GRAZE",
+            "weight": 6.0,
+            "cost_gp": 50.0
+        },
+        {
+            "name": "Halberd",
+            "damage_dice": "1d10",
+            "damage_type": "SLASHING",
+            "properties": [
+                "Heavy",
+                "Reach",
+                "Two-Handed"
+            ],
+            "mastery": "CLEAVE",
+            "weight": 6.0,
+            "cost_gp": 20.0
+        },
+        {
+            "name": "Lance",
+            "damage_dice": "1d10",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Heavy",
+                "Reach",
+                "Two-Handed (unless mounted)"
+            ],
+            "mastery": "TOPPLE",
+            "weight": 6.0,
+            "cost_gp": 10.0
+        },
+        {
+            "name": "Longsword",
+            "damage_dice": "1d8",
+            "damage_type": "SLASHING",
+            "properties": [
+                "Versatile (1d10)"
+            ],
+            "mastery": "SAP",
+            "weight": 3.0,
+            "cost_gp": 15.0
+        },
+        {
+            "name": "Maul",
+            "damage_dice": "2d6",
+            "damage_type": "BLUDGEONING",
+            "properties": [
+                "Heavy",
+                "Two-Handed"
+            ],
+            "mastery": "TOPPLE",
+            "weight": 10.0,
+            "cost_gp": 10.0
+        },
+        {
+            "name": "Morningstar",
+            "damage_dice": "1d8",
+            "damage_type": "PIERCING",
+            "properties": [],
+            "mastery": "SAP",
+            "weight": 4.0,
+            "cost_gp": 15.0
+        },
+        {
+            "name": "Pike",
+            "damage_dice": "1d10",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Heavy",
+                "Reach",
+                "Two-Handed"
+            ],
+            "mastery": "PUSH",
+            "weight": 18.0,
+            "cost_gp": 5.0
+        },
+        {
+            "name": "Rapier",
+            "damage_dice": "1d8",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Finesse"
+            ],
+            "mastery": "VEX",
+            "weight": 2.0,
+            "cost_gp": 25.0
+        },
+        {
+            "name": "Scimitar",
+            "damage_dice": "1d6",
+            "damage_type": "SLASHING",
+            "properties": [
+                "Finesse",
+                "Light"
+            ],
+            "mastery": "NICK",
+            "weight": 3.0,
+            "cost_gp": 25.0
+        },
+        {
+            "name": "Shortsword",
+            "damage_dice": "1d6",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Finesse",
+                "Light"
+            ],
+            "mastery": "VEX",
+            "weight": 2.0,
+            "cost_gp": 10.0
+        },
+        {
+            "name": "Trident",
+            "damage_dice": "1d8",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Thrown (Range 20/60)",
+                "Versatile (1d10)"
+            ],
+            "mastery": "TOPPLE",
+            "weight": 4.0,
+            "cost_gp": 5.0
+        },
+        {
+            "name": "Warhammer",
+            "damage_dice": "1d8",
+            "damage_type": "BLUDGEONING",
+            "properties": [
+                "Versatile (1d10)"
+            ],
+            "mastery": "PUSH",
+            "weight": 5.0,
+            "cost_gp": 15.0
+        },
+        {
+            "name": "War Pick",
+            "damage_dice": "1d8",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Versatile (1d10)"
+            ],
+            "mastery": "SAP",
+            "weight": 2.0,
+            "cost_gp": 5.0
+        },
+        {
+            "name": "Whip",
+            "damage_dice": "1d4",
+            "damage_type": "SLASHING",
+            "properties": [
+                "Finesse",
+                "Reach"
+            ],
+            "mastery": "SLOW",
+            "weight": 3.0,
+            "cost_gp": 2.0
+        },
+        {
+            "name": "Blowgun",
+            "damage_dice": "1",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Ammunition (Range 25/100; Needle)",
+                "Loading"
+            ],
+            "mastery": "VEX",
+            "weight": 1.0,
+            "cost_gp": 10.0
+        },
+        {
+            "name": "Hand Crossbow",
+            "damage_dice": "1d6",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Ammunition (Range 30/120; Bolt)",
+                "Light",
+                "Loading"
+            ],
+            "mastery": "VEX",
+            "weight": 3.0,
+            "cost_gp": 75.0
+        },
+        {
+            "name": "Heavy Crossbow",
+            "damage_dice": "1d10",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Ammunition (Range 100/400; Bolt)",
+                "Heavy",
+                "Loading",
+                "Two-Handed"
+            ],
+            "mastery": "PUSH",
+            "weight": 18.0,
+            "cost_gp": 50.0
+        },
+        {
+            "name": "Longbow",
+            "damage_dice": "1d8",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Ammunition (Range 150/600; Arrow)",
+                "Heavy",
+                "Two-Handed"
+            ],
+            "mastery": "SLOW",
+            "weight": 2.0,
+            "cost_gp": 50.0
+        },
+        {
+            "name": "Musket",
+            "damage_dice": "1d12",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Ammunition (Range 40/120; Bullet)",
+                "Loading",
+                "Two-Handed"
+            ],
+            "mastery": "SLOW",
+            "weight": 10.0,
+            "cost_gp": 500.0
+        },
+        {
+            "name": "Pistol",
+            "damage_dice": "1d10",
+            "damage_type": "PIERCING",
+            "properties": [
+                "Ammunition (Range 30/90; Bullet)",
+                "Loading"
+            ],
+            "mastery": "VEX",
+            "weight": 3.0,
+            "cost_gp": 250.0
+        }
+    ],
+    "Armor": [
+        {
+            "name": "Padded Armor",
+            "category": "LIGHT",
+            "ac_base": 11,
+            "dex_cap": null,
+            "strength_requirement": 0,
+            "stealth_disadvantage": true,
+            "weight": 8.0,
+            "cost_gp": 5.0
+        },
+        {
+            "name": "Leather Armor",
+            "category": "LIGHT",
+            "ac_base": 11,
+            "dex_cap": null,
+            "strength_requirement": 0,
+            "stealth_disadvantage": false,
+            "weight": 10.0,
+            "cost_gp": 10.0
+        },
+        {
+            "name": "Studded Leather Armor",
+            "category": "LIGHT",
+            "ac_base": 12,
+            "dex_cap": null,
+            "strength_requirement": 0,
+            "stealth_disadvantage": false,
+            "weight": 13.0,
+            "cost_gp": 45.0
+        },
+        {
+            "name": "Hide Armor",
+            "category": "MEDIUM",
+            "ac_base": 12,
+            "dex_cap": 2,
+            "strength_requirement": 0,
+            "stealth_disadvantage": false,
+            "weight": 12.0,
+            "cost_gp": 10.0
+        },
+        {
+            "name": "Chain Shirt",
+            "category": "MEDIUM",
+            "ac_base": 13,
+            "dex_cap": 2,
+            "strength_requirement": 0,
+            "stealth_disadvantage": false,
+            "weight": 20.0,
+            "cost_gp": 50.0
+        },
+        {
+            "name": "Scale Mail",
+            "category": "MEDIUM",
+            "ac_base": 14,
+            "dex_cap": 2,
+            "strength_requirement": 0,
+            "stealth_disadvantage": true,
+            "weight": 45.0,
+            "cost_gp": 50.0
+        },
+        {
+            "name": "Breastplate",
+            "category": "MEDIUM",
+            "ac_base": 14,
+            "dex_cap": 2,
+            "strength_requirement": 0,
+            "stealth_disadvantage": false,
+            "weight": 20.0,
+            "cost_gp": 400.0
+        },
+        {
+            "name": "Half Plate Armor",
+            "category": "MEDIUM",
+            "ac_base": 15,
+            "dex_cap": 2,
+            "strength_requirement": 0,
+            "stealth_disadvantage": true,
+            "weight": 40.0,
+            "cost_gp": 750.0
+        },
+        {
+            "name": "Ring Mail",
+            "category": "HEAVY",
+            "ac_base": 14,
+            "dex_cap": 0,
+            "strength_requirement": 0,
+            "stealth_disadvantage": true,
+            "weight": 40.0,
+            "cost_gp": 30.0
+        },
+        {
+            "name": "Chain Mail",
+            "category": "HEAVY",
+            "ac_base": 16,
+            "dex_cap": 0,
+            "strength_requirement": 13,
+            "stealth_disadvantage": true,
+            "weight": 55.0,
+            "cost_gp": 75.0
+        },
+        {
+            "name": "Splint Armor",
+            "category": "HEAVY",
+            "ac_base": 17,
+            "dex_cap": 0,
+            "strength_requirement": 15,
+            "stealth_disadvantage": true,
+            "weight": 60.0,
+            "cost_gp": 200.0
+        },
+        {
+            "name": "Plate Armor",
+            "category": "HEAVY",
+            "ac_base": 18,
+            "dex_cap": 0,
+            "strength_requirement": 15,
+            "stealth_disadvantage": true,
+            "weight": 65.0,
+            "cost_gp": 1500.0
+        },
+        {
+            "name": "Shield",
+            "category": "SHIELD",
+            "ac_base": 2,
+            "dex_cap": null,
+            "strength_requirement": 0,
+            "stealth_disadvantage": false,
+            "weight": 6.0,
+            "cost_gp": 10.0
+        }
+    ],
+    "Items": []
+}

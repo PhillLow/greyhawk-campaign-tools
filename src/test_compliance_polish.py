@@ -12,6 +12,7 @@ class TestCompliancePolish(unittest.TestCase):
     def test_species_spells_tiefling(self):
         # Tiefling grants spells at lvl 3 and 5
         self.char.species = Species.get_template(SpeciesName.TIEFLING)
+        self.char.species.apply_lineage("Infernal")
         self.char.classes = [] # No classes needed for species traits usually, but level matters.
         # Check level calculation (Character defaults level 1 if no classes)
         

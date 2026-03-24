@@ -30,6 +30,9 @@ class Character(BaseModel):
     # Features & Feats
     feats: List[Feat] = []
     
+    # Weapon Masteries (List of weapon names)
+    weapon_masteries: List[str] = []
+    
     # Skills
     skills: List[str] = []
     
@@ -58,6 +61,18 @@ class Character(BaseModel):
     # Companions
     companions: List[Minion] = []
     
+    # Rest Tracking (2024 PHB: 2 Short Rests per Long Rest)
+    short_rests_taken: int = 0
+    
+    @computed_field
+    def can_transform(self) -> bool:
+        """True if character has Wild Shape or similar transformation ability."""
+        # Check for Druid class
+        if any(cls.character_class.name == ClassName.DRUID for cls in self.classes):
+            return True
+        # Could extend for other forms (Polymorph spell, etc.) in future
+        return False
+
     @computed_field
     def exhaustion_penalty(self) -> int:
         """2024 Rules: -2 per level."""
@@ -215,15 +230,41 @@ class Character(BaseModel):
             for s in self.species.free_spells:
                 if self.level >= s.level_required:
                     self.free_casts[s.name] = s.count
+                    
+        # Reset Free Casts (Feat spells like Magic Initiate)
+        # If a feat grants a free cast, it needs to be reset too.
+        # We check feats for "Magic Initiate" pattern.
+        for feat in self.feats:
+            if "Magic Initiate" in feat.name:
+                # Find the Level 1 spell in spellbook that was granted by this feat
+                # For simplicity, we restore all free_casts that currently exist (set to 1)
+                # A more precise approach would track which spells came from which feat.
+                pass  # Handled below generically
+                
+        # Generic: Reset ALL free_casts to 1 if they existed before
+        # (Species spells already handled above with specific counts)
+        for spell_name in list(self.free_casts.keys()):
+            # Skip species spells (they have specific counts)
+            is_species_spell = self.species.free_spells and any(s.name == spell_name for s in self.species.free_spells)
+            if not is_species_spell:
+                self.free_casts[spell_name] = 1  # Feat spells reset to 1/day
+        
+        # Reset Short Rest counter
+        self.short_rests_taken = 0
             
-    def perform_short_rest(self):
+    def perform_short_rest(self) -> bool:
+        """Performs a short rest. Returns True if within normal limits, False if exceeded."""
+        # Track count
+        self.short_rests_taken += 1
+        exceeded_limit = self.short_rests_taken > 2
+        
         # 2024: Pact Magic restores on Short Rest
         _, count = self.max_pact_slots
         self.current_pact_slots = count
         # Also Wizard Arcane Recovery etc. (Not implemented yet)
-        """Logic for short rest (resetting cooldowns) is mostly per-class."""
         # Warlock slots, Fighter Second Wind etc would go here.
-        pass
+        
+        return not exceeded_limit
         
     def roll_hit_die(self, class_name: str = None) -> int:
         """Spends a hit die to heal."""
@@ -284,6 +325,19 @@ class Character(BaseModel):
             return 1 # Default for new char
         return sum(c.level for c in self.classes)
 
+    @computed_field
+    def active_features(self) -> List[dict]:
+        """Returns all features currently active based on class levels."""
+        active = []
+        for cls_level in self.classes:
+            cclass = cls_level.character_class
+            level = cls_level.level
+            for feat in cclass.features:
+                if feat.level <= level:
+                    # In Pydantic V2 computed fields might auto-serialize dicts differently, but keeping it simple:
+                    active.append(feat)
+        return active
+
     @property
     def character_class(self) -> CharacterClass:
         """Primary Class (for backward compat)."""
@@ -323,6 +377,10 @@ class Character(BaseModel):
             avg = (cls.character_class.hit_die // 2) + 1
             total_hp += (max(0, avg + con_mod) * cls.level)
             
+        # Feat: Tough (+2 HP per level)
+        if any("Tough" in f.name for f in self.feats):
+            total_hp += (2 * self.level)
+            
         return total_hp
 
     @computed_field
@@ -335,7 +393,11 @@ class Character(BaseModel):
 
     @computed_field
     def speed(self) -> int:
-        """Calculates Speed (Species + modifiers - Exhaustion)."""
+        """Calculates Speed (Species + modifiers - Exhaustion). Transformation overrides."""
+        # Check transformation override first
+        if self.active_transformation and self.active_transformation.speed_override:
+            return self.active_transformation.speed_override
+            
         base = self.species.speed
         
         # Modifiers
@@ -461,6 +523,12 @@ class Character(BaseModel):
         
         return mod
 
+    def get_skill_advantage(self, skill_name: str, using_proficient_tool: bool = False) -> str:
+        """2024 Rule: If proficient in the skill AND the tool used for the check, gain Advantage."""
+        if skill_name in self.skills and using_proficient_tool:
+            return "advantage"
+        return "normal"
+
     def get_advantage_state(self, check_type: str = "attack") -> str:
         """Returns 'advantage', 'disadvantage', or 'normal'."""
         adv = 0
@@ -474,6 +542,17 @@ class Character(BaseModel):
         if adv < 0: return "disadvantage"
         return "normal"
         
+    def get_active_mastery(self, weapon: Weapon) -> Optional[WeaponMastery]:
+        """Returns the WeaponMastery ONLY if the character has mastered this weapon."""
+        if not weapon.mastery: return None
+        
+        # Check if weapon name (e.g. "Dagger") is in mastered list
+        # Case insensitive check
+        if any(m.lower() == weapon.name.lower() for m in self.weapon_masteries):
+            return weapon.mastery
+            
+        return None
+
     def calculate_damage_roll(self, weapon: Weapon, offhand: bool = False) -> int:
         """Calculates Damage Bonus."""
         # 1. Ability Mod

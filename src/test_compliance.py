@@ -82,5 +82,21 @@ class TestCompliance(unittest.TestCase):
         
         self.assertEqual(self.char.grapple_save_dc, 10)
 
+    def test_tool_synergy_advantage(self):
+        """Verify 2024 Tool Synergy: Skill Prof + Tool Prof = Advantage."""
+        self.char.skills.append("History")
+        
+        # History check with Forgery Kit (proficient)
+        adv_state = self.char.get_skill_advantage("History", using_proficient_tool=True)
+        self.assertEqual(adv_state, "advantage")
+        
+        # History check without Tool Prof
+        adv_state_no_tool = self.char.get_skill_advantage("History", using_proficient_tool=False)
+        self.assertEqual(adv_state_no_tool, "normal")
+        
+        # Unproficient skill with Tool prof
+        adv_state_no_skill = self.char.get_skill_advantage("Arcana", using_proficient_tool=True)
+        self.assertEqual(adv_state_no_skill, "normal")
+
 if __name__ == "__main__":
     unittest.main()

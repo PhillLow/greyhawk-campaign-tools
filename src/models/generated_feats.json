@@ -1,0 +1,112 @@
+{
+    "Origin": [
+        {
+            "name": "Alert",
+            "description": "You gain the following benefits. _Initiative Proficiency._ When you roll Initiative, you can add your Proficiency Bonus to the roll. _Initiative Swap._ Immediately after you roll Initiative, you ca...",
+            "type": "Origin",
+            "prerequisite_level": 1
+        },
+        {
+            "name": "Magic Initiate",
+            "description": "You gain the following benefits. _Two Cantrips._ You learn two cantrips of your choice from the Cleric, Druid, or Wizard spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability f...",
+            "type": "Origin",
+            "prerequisite_level": 1
+        },
+        {
+            "name": "Savage Attacker",
+            "description": "You've trained to deal particularly damaging strikes. Once per turn when you hit a target with a weapon, you can roll the weapon's damage dice twice and use either roll against the target.",
+            "type": "Origin",
+            "prerequisite_level": 1
+        },
+        {
+            "name": "Skilled",
+            "description": "You gain proficiency in any combination of three skills or tools of your choice. _Repeatable._ You can take this feat more than once.",
+            "type": "Origin",
+            "prerequisite_level": 1
+        }
+    ],
+    "General": [
+        {
+            "name": "Ability Score Improvement",
+            "description": "Increase one ability score of your choice by 2, or increase two ability scores of your choice by 1. This feat can't increase an ability score above 20. _Repeatable._ You can take this feat more tha...",
+            "type": "General",
+            "prerequisite_level": 4
+        },
+        {
+            "name": "Grappler",
+            "description": "You gain the following benefits. _Ability Score Increase._ Increase your Strength or Dexterity score by 1, to a maximum of 20. _Punch and Grab._ When you hit a creature with an Unarmed Strike as pa...",
+            "type": "General",
+            "prerequisite_level": 4
+        }
+    ],
+    "Fighting Style": [
+        {
+            "name": "Archery",
+            "description": "You gain a +2 bonus to attack rolls you make with Ranged weapons.",
+            "type": "Fighting Style",
+            "prerequisite_level": 1
+        },
+        {
+            "name": "Defense",
+            "description": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class.",
+            "type": "Fighting Style",
+            "prerequisite_level": 1
+        },
+        {
+            "name": "Great Weapon Fighting",
+            "description": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatil...",
+            "type": "Fighting Style",
+            "prerequisite_level": 1
+        },
+        {
+            "name": "Two-Weapon Fighting",
+            "description": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage.",
+            "type": "Fighting Style",
+            "prerequisite_level": 1
+        }
+    ],
+    "Epic Boon": [
+        {
+            "name": "Boon of Combat Prowess",
+            "description": "You gain the following benefits. _Ability Score Increase._ Increase one ability score of your choice by 1, to a maximum of 30. _Peerless Aim._ When you miss with an attack roll, you can hit instead...",
+            "type": "Epic Boon",
+            "prerequisite_level": 19
+        },
+        {
+            "name": "Boon of Dimensional Travel",
+            "description": "You gain the following benefits. _Ability Score Increase._ Increase one ability score of your choice by 1, to a maximum of 30. _Blink Steps._ Immediately after you take the Attack action or the Mag...",
+            "type": "Epic Boon",
+            "prerequisite_level": 19
+        },
+        {
+            "name": "Boon of Fate",
+            "description": "You gain the following benefits. _Ability Score Increase._ Increase one ability score of your choice by 1, to a maximum of 30. _Improve Fate._ When you or another creature within 60 feet of you suc...",
+            "type": "Epic Boon",
+            "prerequisite_level": 19
+        },
+        {
+            "name": "Boon of Irresistible Offense",
+            "description": "You gain the following benefits. _Ability Score Increase._ Increase your Strength or Dexterity score by 1, to a maximum of 30. _Overcome Defenses._ The Bludgeoning, Piercing, and Slashing damage yo...",
+            "type": "Epic Boon",
+            "prerequisite_level": 19
+        },
+        {
+            "name": "Boon of Spell Recall",
+            "description": "You gain the following benefits. _Ability Score Increase._ Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 30. _Free Casting._ Whenever you cast a spell with a level 1\u20134...",
+            "type": "Epic Boon",
+            "prerequisite_level": 19
+        },
+        {
+            "name": "Boon of the Night Spirit",
+            "description": "You gain the following benefits. _Ability Score Increase._ Increase one ability score of your choice by 1, to a maximum of 30. _Merge with Shadows._ While within Dim Light or Darkness, you can give...",
+            "type": "Epic Boon",
+            "prerequisite_level": 19
+        },
+        {
+            "name": "Boon of Truesight",
+            "description": "You gain the following benefits. _Ability Score Increase._ Increase one ability score of your choice by 1, to a maximum of 30. _Truesight._ You have Truesight with a range of 60 feet.",
+            "type": "Epic Boon",
+            "prerequisite_level": 19
+        }
+    ]
+}

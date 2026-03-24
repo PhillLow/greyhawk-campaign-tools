@@ -1,0 +1,1186 @@
+{
+    "BARBARIAN": [
+        {
+            "name": "Rage",
+            "level": 1,
+            "description": "You can imbue yourself with a primal power called Rage, a force that grants you extraordinary might and resilience. You can enter it as a Bonus Act..."
+        },
+        {
+            "name": "Unarmored Defense",
+            "level": 1,
+            "description": "While you aren't wearing any armor, your base Armor Class equals 10 plus your Dexterity and Constitution modifiers. You can use a Shield and still ..."
+        },
+        {
+            "name": "Weapon Mastery",
+            "level": 1,
+            "description": "Your training with weapons allows you to use the mastery properties of two kinds of Simple or Martial Melee weapons of your choice, such as Greatax..."
+        },
+        {
+            "name": "Danger Sense",
+            "level": 2,
+            "description": "You gain an uncanny sense of when things aren't as they should be, giving you an edge when you dodge perils. You have Advantage on Dexterity saving..."
+        },
+        {
+            "name": "Reckless Attack",
+            "level": 2,
+            "description": "You can throw aside all concern for defense to attack with increased ferocity. When you make your first attack roll on your turn, you can decide to..."
+        },
+        {
+            "name": "Barbarian Subclass",
+            "level": 3,
+            "description": "You gain a Barbarian subclass of your choice. The Path of the Berserker subclass is detailed after this class's description. A subclass is a specia..."
+        },
+        {
+            "name": "Primal Knowledge",
+            "level": 3,
+            "description": "You gain proficiency in another skill of your choice from the skill list available to Barbarians at level 1."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Barb..."
+        },
+        {
+            "name": "Extra Attack",
+            "level": 5,
+            "description": "You can attack twice instead of once whenever you take the Attack action on your turn."
+        },
+        {
+            "name": "Fast Movement",
+            "level": 5,
+            "description": "Your speed increases by 10 feet while you aren't wearing Heavy armor."
+        },
+        {
+            "name": "Feral Instinct",
+            "level": 7,
+            "description": "Your instincts are so honed that you have Advantage on Initiative rolls."
+        },
+        {
+            "name": "Instinctive Pounce",
+            "level": 7,
+            "description": "As part of the Bonus Action you take to enter your Rage, you can move up to half your Speed."
+        },
+        {
+            "name": "Brutal Strike",
+            "level": 9,
+            "description": "If you use Reckless Attack, you can forgo any Advantage on one Strength-based attack roll of your choice on your turn. The chosen attack roll mustn..."
+        },
+        {
+            "name": "Relentless Rage",
+            "level": 11,
+            "description": "Your Rage can keep you fighting despite grievous wounds. If you drop to 0 Hit Points while your Rage is active and don't die outright, you can make..."
+        },
+        {
+            "name": "Improved Brutal Strike",
+            "level": 13,
+            "description": "You have honed new ways to attack furiously. The following effects are now among your Brutal Strike options."
+        },
+        {
+            "name": "Persistent Rage",
+            "level": 15,
+            "description": "When you roll Initiative, you can regain all expended uses of Rage. After you regain uses of Rage in this way, you can't do so again until you fini..."
+        },
+        {
+            "name": "Improved Brutal Strike",
+            "level": 17,
+            "description": "The extra damage of your Brutal Strike increases to 2d10. In addition, you can use two different Brutal Strike effects whenever you use your Brutal..."
+        },
+        {
+            "name": "Indomitable Might",
+            "level": 18,
+            "description": "If your total for a Strength check or Strength saving throw is less than your Strength score, you can use that score in place of the total."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Irresistible Offense is recommended."
+        },
+        {
+            "name": "Primal Champion",
+            "level": 20,
+            "description": "You embody primal power. Your Strength and Constitution scores increase by 4, to a maximum of 25."
+        },
+        {
+            "name": "Frenzy",
+            "level": 3,
+            "description": "If you use Reckless Attack while your Rage is active, you deal extra damage to the first target you hit on your turn with a Strength-based attack. ..."
+        },
+        {
+            "name": "Mindless Rage",
+            "level": 6,
+            "description": "You have Immunity to the Charmed and Frightened conditions while your Rage is active. If you're Charmed or Frightened when you enter your Rage, the..."
+        },
+        {
+            "name": "Retaliation",
+            "level": 10,
+            "description": "When you take damage from a creature that is within 5 feet of you, you can take a Reaction to make one melee attack against that creature, using a ..."
+        },
+        {
+            "name": "Intimidating Presence",
+            "level": 14,
+            "description": "As a Bonus Action, you can strike terror into others with your menacing presence and primal power. When you do so, each creature of your choice in ..."
+        }
+    ],
+    "BARD": [
+        {
+            "name": "Bardic Inspiration",
+            "level": 1,
+            "description": "You can supernaturally inspire others through words, music, or dance. This inspiration is represented by your Bardic Inspiration die, which is a d6."
+        },
+        {
+            "name": "Spellcasting",
+            "level": 1,
+            "description": "You have learned to cast spells through your bardic arts. See \"Spells\" for the rules on spellcasting. The information below details how you use tho..."
+        },
+        {
+            "name": "Expertise",
+            "level": 2,
+            "description": "You gain Expertise (see \"Rules Glossary\") in two of your skill proficiencies of your choice. Performance and Persuasion are recommended if you have..."
+        },
+        {
+            "name": "Jack of All Trades",
+            "level": 2,
+            "description": "You can add half your Proficiency Bonus (round down) to any ability check you make that uses a skill proficiency you lack and that doesn't otherwis..."
+        },
+        {
+            "name": "Bard Subclass",
+            "level": 3,
+            "description": "You gain a Bard subclass of your choice. The College of Lore subclass is detailed after this class's description. A subclass is a specialization th..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Bard..."
+        },
+        {
+            "name": "Font of Inspiration",
+            "level": 5,
+            "description": "You now regain all your expended uses of Bardic Inspiration when you finish a Short or Long Rest."
+        },
+        {
+            "name": "Countercharm",
+            "level": 7,
+            "description": "You can use musical notes or words of power to disrupt mind-influencing effects. If you or a creature within 30 feet of you fails a saving throw ag..."
+        },
+        {
+            "name": "Magical Secrets",
+            "level": 10,
+            "description": "You've learned secrets from various magical traditions. Whenever you reach a Bard level (including this level) and the Prepared Spells number in th..."
+        },
+        {
+            "name": "Superior Inspiration",
+            "level": 18,
+            "description": "When you roll Initiative, you regain expended uses of Bardic Inspiration until you have two if you have fewer than that."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Spell Recall is recommended."
+        },
+        {
+            "name": "Words of Creation",
+            "level": 20,
+            "description": "You have mastered two of the Words of Creation: the words of life and death. You therefore always have the _Power Word Heal_ and _Power Word Kill_ ..."
+        },
+        {
+            "name": "Bonus Proficiencies",
+            "level": 3,
+            "description": "You gain proficiency with three skills of your choice."
+        },
+        {
+            "name": "Cutting Words",
+            "level": 3,
+            "description": "You learn to use your wit to supernaturally distract, confuse, and otherwise sap the confidence and competence of others. When a creature that you ..."
+        },
+        {
+            "name": "Magical Discoveries",
+            "level": 6,
+            "description": "You learn two spells of your choice. These spells can come from the Cleric, Druid, or Wizard spell list or any combination thereof (see a class's s..."
+        },
+        {
+            "name": "Peerless Skill",
+            "level": 14,
+            "description": "When you make an ability check or attack roll and fail, you can expend one use of Bardic Inspiration; roll the Bardic Inspiration die, and add the ..."
+        }
+    ],
+    "CLERIC": [
+        {
+            "name": "Spellcasting",
+            "level": 1,
+            "description": "You have learned to cast spells through prayer and meditation. See \"Spells\" for the rules on spellcasting. The information below details how you us..."
+        },
+        {
+            "name": "Divine Order",
+            "level": 1,
+            "description": "You have dedicated yourself to one of the following sacred roles of your choice."
+        },
+        {
+            "name": "Channel Divinity",
+            "level": 2,
+            "description": "You can channel divine energy directly from the Outer Planes to fuel magical effects. You start with two such effects: Divine Spark and Turn Undead..."
+        },
+        {
+            "name": "Cleric Subclass",
+            "level": 3,
+            "description": "You gain a Cleric subclass of your choice. The Life Domain subclass is detailed after this class's description. A subclass is a specialization that..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Cler..."
+        },
+        {
+            "name": "Sear Undead",
+            "level": 5,
+            "description": "Whenever you use Turn Undead, you can roll a number of d8s equal to your Wisdom modifier (minimum of 1d8) and add the rolls together. Each Undead t..."
+        },
+        {
+            "name": "Blessed Strikes",
+            "level": 7,
+            "description": "Divine power infuses you in battle. You gain one of the following options of your choice (if you get either option from a Cleric subclass in an old..."
+        },
+        {
+            "name": "Divine Intervention",
+            "level": 10,
+            "description": "You can call on your deity or pantheon to intervene on your behalf. As a Magic action, choose any Cleric spell of level 5 or lower that doesn't req..."
+        },
+        {
+            "name": "Improved Blessed Strikes",
+            "level": 14,
+            "description": "The option you chose for Blessed Strikes grows more powerful."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Fate is recommended."
+        },
+        {
+            "name": "Greater Divine Intervention",
+            "level": 20,
+            "description": "You can call on even more powerful divine intervention. When you use your Divine Intervention feature, you can choose _Wish_ when you select a spel..."
+        },
+        {
+            "name": "Disciple of Life",
+            "level": 3,
+            "description": "When a spell you cast with a spell slot restores Hit Points to a creature, that creature regains additional Hit Points on the turn you cast the spe..."
+        },
+        {
+            "name": "Life Domain Spells",
+            "level": 3,
+            "description": "Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Life Domain Spel..."
+        },
+        {
+            "name": "Preserve Life",
+            "level": 3,
+            "description": "As a Magic action, you present your Holy Symbol and expend a use of your Channel Divinity to evoke healing energy that can restore a number of Hit ..."
+        },
+        {
+            "name": "Blessed Healer",
+            "level": 6,
+            "description": "The healing spells you cast on others heal you as well. Immediately after you cast a spell with a spell slot that restores Hit Points to one or mor..."
+        },
+        {
+            "name": "Supreme Healing",
+            "level": 17,
+            "description": "When you would normally roll one or more dice to restore Hit Points to a creature with a spell or Channel Divinity, don't roll those dice for the h..."
+        }
+    ],
+    "DRUID": [
+        {
+            "name": "Spellcasting",
+            "level": 1,
+            "description": "You have learned to cast spells through studying the mystical forces of nature. See \"Spells\" for the rules on spellcasting. The information below d..."
+        },
+        {
+            "name": "Druidic",
+            "level": 1,
+            "description": "You know Druidic, the secret language of Druids. While learning this ancient tongue, you also unlocked the magic of communicating with animals; you..."
+        },
+        {
+            "name": "Primal Order",
+            "level": 1,
+            "description": "You have dedicated yourself to one of the following sacred roles of your choice."
+        },
+        {
+            "name": "Wild Shape",
+            "level": 2,
+            "description": "The power of nature allows you to assume the form of an animal. As a Bonus Action, you shape-shift into a Beast form that you have learned for this..."
+        },
+        {
+            "name": "Wild Companion",
+            "level": 2,
+            "description": "You can summon a nature spirit that assumes an animal form to aid you. As a Magic action, you can expend a spell slot or a use of Wild Shape to cas..."
+        },
+        {
+            "name": "Druid Subclass",
+            "level": 3,
+            "description": "You gain a Druid subclass of your choice. The Circle of the Land subclass is detailed after this class's description. A subclass is a specializatio..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Drui..."
+        },
+        {
+            "name": "Wild Resurgence",
+            "level": 5,
+            "description": "Once on each of your turns, if you have no uses of Wild Shape left, you can give yourself one use by expending a spell slot (no action required)."
+        },
+        {
+            "name": "Elemental Fury",
+            "level": 7,
+            "description": "The might of the elements flows through you. You gain one of the following options of your choice."
+        },
+        {
+            "name": "Improved Elemental Fury",
+            "level": 15,
+            "description": "The option you chose for Elemental Fury grows more powerful, as detailed below."
+        },
+        {
+            "name": "Beast Spells",
+            "level": 18,
+            "description": "While using Wild Shape, you can cast spells in Beast form, except for any spell that has a Material component with a cost specified or that consume..."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Dimensional Travel is recommended."
+        },
+        {
+            "name": "Archdruid",
+            "level": 20,
+            "description": "The vitality of nature constantly blooms within you, granting you the following benefits."
+        },
+        {
+            "name": "Circle of the Land Spells",
+            "level": 3,
+            "description": "Whenever you finish a Long Rest, choose one type of land: arid, polar, temperate, or tropical. Consult the table below that corresponds to the chos..."
+        },
+        {
+            "name": "Land's Aid",
+            "level": 3,
+            "description": "As a Magic action, you can expend a use of your Wild Shape and choose a point within 60 feet of yourself. Vitality-giving flowers and life-draining..."
+        },
+        {
+            "name": "Natural Recovery",
+            "level": 6,
+            "description": "You can cast one of the level 1+ spells that you have prepared from your Circle Spells feature without expending a spell slot, and you must finish ..."
+        },
+        {
+            "name": "Nature's Ward",
+            "level": 10,
+            "description": "You are immune to the Poisoned condition, and you have Resistance to a damage type associated with your current land choice in the Circle Spells fe..."
+        },
+        {
+            "name": "Nature's Sanctuary",
+            "level": 14,
+            "description": "As a Magic action, you can expend a use of your Wild Shape and cause spectral trees and vines to appear in a 15-foot Cube on the ground within 120 ..."
+        }
+    ],
+    "FIGHTER": [
+        {
+            "name": "Fighting Style",
+            "level": 1,
+            "description": "You have honed your martial prowess and gain a Fighting Style feat of your choice (see \"Feats\"). Defense is recommended."
+        },
+        {
+            "name": "Second Wind",
+            "level": 1,
+            "description": "You have a limited well of physical and mental stamina that you can draw on. As a Bonus Action, you can use it to regain Hit Points equal to 1d10 p..."
+        },
+        {
+            "name": "Weapon Mastery",
+            "level": 1,
+            "description": "Your training with weapons allows you to use the mastery properties of three kinds of Simple or Martial weapons of your choice. Whenever you finish..."
+        },
+        {
+            "name": "Action Surge",
+            "level": 2,
+            "description": "You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action, except the Magic action."
+        },
+        {
+            "name": "Tactical Mind",
+            "level": 2,
+            "description": "You have a mind for tactics on and off the battlefield. When you fail an ability check, you can expend a use of your Second Wind to push yourself t..."
+        },
+        {
+            "name": "Fighter Subclass",
+            "level": 3,
+            "description": "You gain a Fighter subclass of your choice. The Champion subclass is detailed after this class's description. A subclass is a specialization that g..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Figh..."
+        },
+        {
+            "name": "Extra Attack",
+            "level": 5,
+            "description": "You can attack twice instead of once whenever you take the Attack action on your turn."
+        },
+        {
+            "name": "Tactical Shift",
+            "level": 5,
+            "description": "Whenever you activate your Second Wind with a Bonus Action, you can move up to half your Speed without provoking Opportunity Attacks."
+        },
+        {
+            "name": "Indomitable",
+            "level": 9,
+            "description": "If you fail a saving throw, you can reroll it with a bonus equal to your Fighter level. You must use the new roll, and you can't use this feature a..."
+        },
+        {
+            "name": "Tactical Master",
+            "level": 9,
+            "description": "When you attack with a weapon whose mastery property you can use, you can replace that property with the Push, Sap, or Slow property for that attack."
+        },
+        {
+            "name": "Two Extra Attacks",
+            "level": 11,
+            "description": "You can attack three times instead of once whenever you take the Attack action on your turn."
+        },
+        {
+            "name": "Studied Attacks",
+            "level": 13,
+            "description": "You study your opponents and learn from each attack you make. If you make an attack roll against a creature and miss, you have Advantage on your ne..."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Combat Prowess is recommended."
+        },
+        {
+            "name": "Three Extra Attacks",
+            "level": 20,
+            "description": "You can attack four times instead of once whenever you take the Attack action on your turn."
+        },
+        {
+            "name": "Improved Critical",
+            "level": 3,
+            "description": "Your attack rolls with weapons and Unarmed Strikes can score a Critical Hit on a roll of 19 or 20 on the d20."
+        },
+        {
+            "name": "Remarkable Athlete",
+            "level": 3,
+            "description": "Thanks to your athleticism, you have Advantage on Initiative rolls and Strength (Athletics) checks."
+        },
+        {
+            "name": "Additional Fighting Style",
+            "level": 7,
+            "description": "You gain another Fighting Style feat of your choice."
+        },
+        {
+            "name": "Heroic Warrior",
+            "level": 10,
+            "description": "The thrill of battle drives you toward victory. During combat, you can give yourself Heroic Inspiration whenever you start your turn without it."
+        },
+        {
+            "name": "Superior Critical",
+            "level": 15,
+            "description": "Your attack rolls with weapons and Unarmed Strikes can now score a Critical Hit on a roll of 18\u201320 on the d20."
+        },
+        {
+            "name": "Survivor",
+            "level": 18,
+            "description": "You attain the pinnacle of resilience in battle, giving you these benefits."
+        }
+    ],
+    "MONK": [
+        {
+            "name": "Martial Arts",
+            "level": 1,
+            "description": "Your practice of martial arts gives you mastery of combat styles that use your Unarmed Strike and Monk weapons, which are the following:"
+        },
+        {
+            "name": "Unarmored Defense",
+            "level": 1,
+            "description": "While you aren't wearing armor or wielding a Shield, your base Armor Class equals 10 plus your Dexterity and Wisdom modifiers."
+        },
+        {
+            "name": "Monk's Focus",
+            "level": 2,
+            "description": "Your focus and martial training allow you to harness a well of extraordinary energy within yourself. This energy is represented by Focus Points. Yo..."
+        },
+        {
+            "name": "Unarmored Movement",
+            "level": 2,
+            "description": "Your speed increases by 10 feet while you aren't wearing armor or wielding a Shield. This bonus increases when you reach certain Monk levels, as sh..."
+        },
+        {
+            "name": "Uncanny Metabolism",
+            "level": 2,
+            "description": "When you roll Initiative, you can regain all expended Focus Points. When you do so, roll your Martial Arts die, and regain a number of Hit Points e..."
+        },
+        {
+            "name": "Deflect Attacks",
+            "level": 3,
+            "description": "When an attack roll hits you and its damage includes Bludgeoning, Piercing, or Slashing damage, you can take a Reaction to reduce the attack's tota..."
+        },
+        {
+            "name": "Monk Subclass",
+            "level": 3,
+            "description": "You gain a Monk subclass of your choice. The Warrior of the Open Hand subclass is detailed after this class's description. A subclass is a speciali..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Monk..."
+        },
+        {
+            "name": "Slow Fall",
+            "level": 4,
+            "description": "You can take a Reaction when you fall to reduce any damage you take from the fall by an amount equal to five times your Monk level."
+        },
+        {
+            "name": "Extra Attack",
+            "level": 5,
+            "description": "You can attack twice instead of once whenever you take the Attack action on your turn."
+        },
+        {
+            "name": "Stunning Strike",
+            "level": 5,
+            "description": "Once per turn when you hit a creature with a Monk weapon or an Unarmed Strike, you can expend 1 Focus Point to attempt a stunning strike. The targe..."
+        },
+        {
+            "name": "Empowered Strikes",
+            "level": 6,
+            "description": "Whenever you deal damage with your Unarmed Strike, it can deal your choice of Force damage or its normal damage type."
+        },
+        {
+            "name": "Evasion",
+            "level": 7,
+            "description": "When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you suc..."
+        },
+        {
+            "name": "Acrobatic Movement",
+            "level": 9,
+            "description": "While you aren't wearing armor or wielding a Shield, you gain the ability to move along vertical surfaces and across liquids on your turn without f..."
+        },
+        {
+            "name": "Heightened Focus",
+            "level": 10,
+            "description": "Your Flurry of Blows, Patient Defense, and Step of the Wind gain the following benefits."
+        },
+        {
+            "name": "Self-Restoration",
+            "level": 10,
+            "description": "Through sheer force of will, you can remove one of the following conditions from yourself at the end of each of your turns: Charmed, Frightened, or..."
+        },
+        {
+            "name": "Deflect Energy",
+            "level": 13,
+            "description": "You can now use your Deflect Attacks feature against attacks that deal any damage type, not just Bludgeoning, Piercing, or Slashing."
+        },
+        {
+            "name": "Disciplined Survivor",
+            "level": 14,
+            "description": "Your physical and mental discipline grant you proficiency in all saving throws."
+        },
+        {
+            "name": "Perfect Focus",
+            "level": 15,
+            "description": "When you roll Initiative and don't use Uncanny Metabolism, you regain expended Focus Points until you have 4 if you have 3 or fewer."
+        },
+        {
+            "name": "Superior Defense",
+            "level": 18,
+            "description": "At the start of your turn, you can expend 3 Focus Points to bolster yourself against harm for 1 minute or until you have the Incapacitated conditio..."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Irresistible Offense is recommended."
+        },
+        {
+            "name": "Body and Mind",
+            "level": 20,
+            "description": "You have developed your body and mind to new heights. Your Dexterity and Wisdom scores increase by 4, to a maximum of 25."
+        },
+        {
+            "name": "Open Hand Technique",
+            "level": 3,
+            "description": "Whenever you hit a creature with an attack granted by your Flurry of Blows, you can impose one of the following effects on that target."
+        },
+        {
+            "name": "Wholeness of Body",
+            "level": 6,
+            "description": "You gain the ability to heal yourself. As a Bonus Action, you can roll your Martial Arts die. You regain a number of Hit Points equal to the number..."
+        },
+        {
+            "name": "Fleet Step",
+            "level": 11,
+            "description": "When you take a Bonus Action other than Step of the Wind, you can also use Step of the Wind immediately after that Bonus Action."
+        },
+        {
+            "name": "Quivering Palm",
+            "level": 17,
+            "description": "You gain the ability to set up lethal vibrations in someone's body. When you hit a creature with an Unarmed Strike, you can expend 4 Focus Points t..."
+        }
+    ],
+    "PALADIN": [
+        {
+            "name": "Lay On Hands",
+            "level": 1,
+            "description": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you finish a Long Rest. With that pool, you can restore ..."
+        },
+        {
+            "name": "Spellcasting",
+            "level": 1,
+            "description": "You have learned to cast spells through prayer and meditation. See \"Spells\" for the rules on spellcasting. The information below details how you us..."
+        },
+        {
+            "name": "Weapon Mastery",
+            "level": 1,
+            "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as..."
+        },
+        {
+            "name": "Fighting Style",
+            "level": 2,
+            "description": "You gain a Fighting Style feat of your choice (see \"Feats\" for feats). Instead of choosing one of those feats, you can choose the option below."
+        },
+        {
+            "name": "Paladin's Smite",
+            "level": 2,
+            "description": "You always have the _Divine Smite_ spell prepared. In addition, you can cast it without expending a spell slot, but you must finish a Long Rest bef..."
+        },
+        {
+            "name": "Channel Divinity",
+            "level": 3,
+            "description": "You can channel divine energy directly from the Outer Planes, using it to fuel magical effects. You start with one such effect: Divine Sense, which..."
+        },
+        {
+            "name": "Paladin Subclass",
+            "level": 3,
+            "description": "You gain a Paladin subclass of your choice. The Oath of Devotion subclass is detailed after this class's description. A subclass is a specializatio..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Pala..."
+        },
+        {
+            "name": "Extra Attack",
+            "level": 5,
+            "description": "You can attack twice instead of once whenever you take the Attack action on your turn."
+        },
+        {
+            "name": "Faithful Steed",
+            "level": 5,
+            "description": "You can call on the aid of an otherworldly steed. You always have the _Find Steed_ spell prepared."
+        },
+        {
+            "name": "Aura of Protection",
+            "level": 6,
+            "description": "You radiate a protective, unseeable aura in a 10-foot Emanation that originates from you. The aura is inactive while you have the Incapacitated con..."
+        },
+        {
+            "name": "Abjure Foes",
+            "level": 9,
+            "description": "As a Magic action, you can expend one use of this class's Channel Divinity to overwhelm foes with awe. As you present your Holy Symbol or weapon, y..."
+        },
+        {
+            "name": "Aura of Courage",
+            "level": 10,
+            "description": "You and your allies have Immunity to the Frightened condition while in your Aura of Protection. If a Frightened ally enters the aura, that conditio..."
+        },
+        {
+            "name": "Radiant Strikes",
+            "level": 11,
+            "description": "Your strikes now carry supernatural power. When you hit a target with an attack roll using a Melee weapon or an Unarmed Strike, the target takes an..."
+        },
+        {
+            "name": "Restoring Touch",
+            "level": 14,
+            "description": "When you use Lay On Hands on a creature, you can also remove one or more of the following conditions from the creature: Blinded, Charmed, Deafened,..."
+        },
+        {
+            "name": "Aura Expansion",
+            "level": 18,
+            "description": "Your Aura of Protection is now a 30-foot Emanation."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Truesight is recommended."
+        },
+        {
+            "name": "Oath of Devotion Spells",
+            "level": 3,
+            "description": "The magic of your oath ensures you always have certain spells ready; when you reach a Paladin level specified in the Oath of Devotion Spells table,..."
+        },
+        {
+            "name": "Sacred Weapon",
+            "level": 3,
+            "description": "When you take the Attack action, you can expend one use of your Channel Divinity to imbue one Melee weapon that you are holding with positive energ..."
+        },
+        {
+            "name": "Aura of Devotion",
+            "level": 7,
+            "description": "You and your allies have Immunity to the Charmed condition while in your Aura of Protection. If a Charmed ally enters the aura, that condition has ..."
+        },
+        {
+            "name": "Smite of Protection",
+            "level": 15,
+            "description": "Your magical smite now radiates protective energy. Whenever you cast _Divine Smite_, you and your allies have Half Cover while in your Aura of Prot..."
+        },
+        {
+            "name": "Holy Nimbus",
+            "level": 20,
+            "description": "As a Bonus Action, you can imbue your Aura of Protection with holy power, granting the benefits below for 10 minutes or until you end them (no acti..."
+        }
+    ],
+    "RANGER": [
+        {
+            "name": "Spellcasting",
+            "level": 1,
+            "description": "You have learned to channel the magical essence of nature to cast spells. See \"Spells\" for the rules on spellcasting. The information below details..."
+        },
+        {
+            "name": "Favored Enemy",
+            "level": 1,
+            "description": "You always have the _Hunter's Mark_ spell prepared. You can cast it twice without expending a spell slot, and you regain all expended uses of this ..."
+        },
+        {
+            "name": "Weapon Mastery",
+            "level": 1,
+            "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your"
+        },
+        {
+            "name": "Deft Explorer",
+            "level": 2,
+            "description": "Thanks to your travels, you gain the following benefits."
+        },
+        {
+            "name": "Fighting Style",
+            "level": 2,
+            "description": "You gain a Fighting Style feat of your choice (see \"Feats\"). Instead of choosing one of those feats, you can choose the option below."
+        },
+        {
+            "name": "Ranger Subclass",
+            "level": 3,
+            "description": "You gain a Ranger subclass of your choice. The Hunter subclass is detailed after this class's description. A subclass is a specialization that gran..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Rang..."
+        },
+        {
+            "name": "Extra Attack",
+            "level": 5,
+            "description": "You can attack twice instead of once whenever you take the Attack action on your turn."
+        },
+        {
+            "name": "Roving",
+            "level": 6,
+            "description": "Your Speed increases by 10 feet while you aren't wearing Heavy armor. You also have a Climb Speed and a Swim Speed equal to your Speed."
+        },
+        {
+            "name": "Expertise",
+            "level": 9,
+            "description": "Choose two of your skill proficiencies with which you lack Expertise. You gain Expertise in those skills."
+        },
+        {
+            "name": "Tireless",
+            "level": 10,
+            "description": "Primal forces now help fuel you on your journeys, granting you the following benefits."
+        },
+        {
+            "name": "Relentless Hunter",
+            "level": 13,
+            "description": "Taking damage can't break your Concentration on _Hunter's Mark_."
+        },
+        {
+            "name": "Nature's Veil",
+            "level": 14,
+            "description": "You invoke spirits of nature to magically hide yourself. As a Bonus Action, you can give yourself the Invisible condition until the end of your nex..."
+        },
+        {
+            "name": "Precise Hunter",
+            "level": 17,
+            "description": "You have Advantage on attack rolls against the creature currently marked by your _Hunter's Mark_."
+        },
+        {
+            "name": "Feral Senses",
+            "level": 18,
+            "description": "Your connection to the forces of nature grants you Blindsight with a range of 30 feet."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Dimensional Travel is recommended."
+        },
+        {
+            "name": "Foe Slayer",
+            "level": 20,
+            "description": "The damage die of your _Hunter's Mark_ is a d10 rather than a d6."
+        },
+        {
+            "name": "Hunter's Lore",
+            "level": 3,
+            "description": "You can call on the forces of nature to reveal certain strengths and weaknesses of your prey. While a creature is marked by your _Hunter's Mark_, y..."
+        },
+        {
+            "name": "Hunter's Prey",
+            "level": 3,
+            "description": "You gain one of the following feature options of your choice. Whenever you finish a Short or Long Rest, you can replace the chosen option with the ..."
+        },
+        {
+            "name": "Defensive Tactics",
+            "level": 7,
+            "description": "You gain one of the following feature options of your choice. Whenever you finish a Short or Long Rest, you can replace the chosen option with the ..."
+        },
+        {
+            "name": "Superior Hunter's Prey",
+            "level": 11,
+            "description": "Once per turn when you deal damage to a creature marked by your _Hunter's Mark_, you can also deal that spell's extra damage to a different creatur..."
+        },
+        {
+            "name": "Superior Hunter's Defense",
+            "level": 15,
+            "description": "When you take damage, you can take a Reaction to give yourself Resistance to that damage and any other damage of the same type until the end of the..."
+        }
+    ],
+    "ROGUE": [
+        {
+            "name": "Expertise",
+            "level": 1,
+            "description": "You gain Expertise in two of your skill proficiencies of your choice. Sleight of Hand and Stealth are recommended if you have proficiency in them."
+        },
+        {
+            "name": "Sneak Attack",
+            "level": 1,
+            "description": "You know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an atta..."
+        },
+        {
+            "name": "Thieves' Cant",
+            "level": 1,
+            "description": "You picked up various languages in the communities where you plied your roguish talents. You know Thieves' Cant and one other language of your choi..."
+        },
+        {
+            "name": "Weapon Mastery",
+            "level": 1,
+            "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as..."
+        },
+        {
+            "name": "Cunning Action",
+            "level": 2,
+            "description": "Your quick thinking and agility allow you to move and act quickly. On your turn, you can take one of the following actions as a Bonus Action: Dash,..."
+        },
+        {
+            "name": "Rogue Subclass",
+            "level": 3,
+            "description": "You gain a Rogue subclass of your choice. The Thief subclass is detailed after this class's description. A subclass is a specialization that grants..."
+        },
+        {
+            "name": "Steady Aim",
+            "level": 3,
+            "description": "As a Bonus Action, you give yourself Advantage on your next attack roll on the current turn. You can use this feature only if you haven't moved dur..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Rogu..."
+        },
+        {
+            "name": "Cunning Strike",
+            "level": 5,
+            "description": "You've developed cunning ways to use your Sneak Attack. When you deal Sneak Attack damage, you can add one of the following Cunning Strike effects...."
+        },
+        {
+            "name": "Uncanny Dodge",
+            "level": 5,
+            "description": "When an attacker that you can see hits you with an attack roll, you can take a Reaction to halve the attack's damage against you (round down)."
+        },
+        {
+            "name": "Evasion",
+            "level": 7,
+            "description": "You can nimbly dodge out of the way of certain dangers. When you're subjected to an effect that allows you to make a Dexterity saving throw to take..."
+        },
+        {
+            "name": "Reliable Talent",
+            "level": 7,
+            "description": "Whenever you make an ability check that uses one of your skill or tool proficiencies, you can treat a d20 roll of 9 or lower as a 10."
+        },
+        {
+            "name": "Improved Cunning Strike",
+            "level": 11,
+            "description": "You can use up to two Cunning Strike effects when you deal Sneak Attack damage, paying the die cost for each effect."
+        },
+        {
+            "name": "Devious Strikes",
+            "level": 14,
+            "description": "You've practiced new ways to use your Sneak Attack deviously. The following effects are now among your Cunning Strike options."
+        },
+        {
+            "name": "Slippery Mind",
+            "level": 15,
+            "description": "Your cunning mind is exceptionally difficult to control. You gain proficiency in Wisdom and Charisma saving throws."
+        },
+        {
+            "name": "Elusive",
+            "level": 18,
+            "description": "You're so evasive that attackers rarely gain the upper hand against you. No attack roll can have Advantage against you unless you have the Incapaci..."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of the Night Spirit is recommended."
+        },
+        {
+            "name": "Stroke of Luck",
+            "level": 20,
+            "description": "You have a marvelous knack for succeeding when you need to. If you fail a D20 Test, you can turn the roll into a 20."
+        },
+        {
+            "name": "Fast Hands",
+            "level": 3,
+            "description": "As a Bonus Action, you can do one of the following."
+        },
+        {
+            "name": "Second-Story Work",
+            "level": 3,
+            "description": "You've trained to get into especially hard-to-reach places, granting you these benefits."
+        },
+        {
+            "name": "Supreme Sneak",
+            "level": 9,
+            "description": "You gain the following Cunning Strike option."
+        },
+        {
+            "name": "Use Magic Device",
+            "level": 13,
+            "description": "You've learned how to maximize use of magic items, granting you the following benefits."
+        },
+        {
+            "name": "Thief's Reflexes",
+            "level": 17,
+            "description": "You are adept at laying ambushes and quickly escaping danger. You can take two turns during the first round of any combat. You take your first turn..."
+        }
+    ],
+    "SORCERER": [
+        {
+            "name": "Spellcasting",
+            "level": 1,
+            "description": "Drawing from your innate magic, you can cast spells. See \"Spells\" for the rules on spellcasting. The information below details how you use those ru..."
+        },
+        {
+            "name": "Innate Sorcery",
+            "level": 1,
+            "description": "An event in your past left an indelible mark on you, infusing you with simmering magic. As a Bonus Action, you can unleash that magic for 1 minute,..."
+        },
+        {
+            "name": "Font of Magic",
+            "level": 2,
+            "description": "You can tap into the wellspring of magic within yourself. This wellspring is represented by Sorcery Points, which allow you to create a variety of ..."
+        },
+        {
+            "name": "Metamagic",
+            "level": 2,
+            "description": "Because your magic flows from within, you can alter your spells to suit your needs; you gain two Metamagic options of your choice from \"Metamagic O..."
+        },
+        {
+            "name": "Sorcerer Subclass",
+            "level": 3,
+            "description": "You gain a Sorcerer subclass of your choice. The Draconic Sorcery subclass is detailed after this class's description. A subclass is a specializati..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Sorc..."
+        },
+        {
+            "name": "Sorcerous Restoration",
+            "level": 5,
+            "description": "When you finish a Short Rest, you can regain expended Sorcery Points, but no more than a number equal to half your Sorcerer level (round down). Onc..."
+        },
+        {
+            "name": "Sorcery Incarnate",
+            "level": 7,
+            "description": "If you have no uses of Innate Sorcery left, you can use it if you spend 2 Sorcery Points when you take the Bonus Action to activate it."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Dimensional Travel is recommended."
+        },
+        {
+            "name": "Arcane Apotheosis",
+            "level": 20,
+            "description": "While your Innate Sorcery feature is active, you can use one Metamagic option on each of your turns without spending Sorcery Points on it."
+        },
+        {
+            "name": "Draconic Resilience",
+            "level": 3,
+            "description": "The magic in your body manifests physical traits of your draconic gift. Your Hit Point maximum increases by 3, and it increases by 1 whenever you g..."
+        },
+        {
+            "name": "Draconic Spells",
+            "level": 3,
+            "description": "When you reach a Sorcerer level specified in the Draconic Spells table, you thereafter always have the listed spells prepared."
+        },
+        {
+            "name": "Elemental Affinity",
+            "level": 6,
+            "description": "Your draconic magic has an affinity with a damage type associated with dragons. Choose one of those types: Acid, Cold, Fire, Lightning, or Poison."
+        },
+        {
+            "name": "Dragon Wings",
+            "level": 14,
+            "description": "As a Bonus Action, you can cause draconic wings to appear on your back. The wings last for 1 hour or until you dismiss them (no action required). F..."
+        },
+        {
+            "name": "Dragon Companion",
+            "level": 18,
+            "description": "You can cast _Summon Dragon_ without a Material component. You can also cast it once without a spell slot, and you regain the ability to cast it in..."
+        }
+    ],
+    "WARLOCK": [
+        {
+            "name": "Eldritch Invocations",
+            "level": 1,
+            "description": "You have unearthed Eldritch Invocations, pieces of forbidden knowledge that imbue you with an abiding magical ability or other lessons. You gain on..."
+        },
+        {
+            "name": "Pact Magic",
+            "level": 1,
+            "description": "Through occult ceremony, you have formed a pact with a mysterious entity to gain magical powers. The entity is a voice in the shadows\u2014its identity ..."
+        },
+        {
+            "name": "Magical Cunning",
+            "level": 2,
+            "description": "You can perform an esoteric rite for 1 minute. At the end of it, you regain expended Pact Magic spell slots but no more than a number equal to half..."
+        },
+        {
+            "name": "Warlock Subclass",
+            "level": 3,
+            "description": "You gain a Warlock subclass of your choice. The Fiend Patron subclass is detailed after this class's description. A subclass is a specialization th..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Warl..."
+        },
+        {
+            "name": "Contact Patron",
+            "level": 9,
+            "description": "In the past, you usually contacted your patron through intermediaries. Now you can communicate directly; you always have the _Contact Other Plane_ ..."
+        },
+        {
+            "name": "Mystic Arcanum",
+            "level": 11,
+            "description": "Your patron grants you a magical secret called an arcanum. Choose one level 6 Warlock spell as this arcanum."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Fate is recommended."
+        },
+        {
+            "name": "Eldritch Master",
+            "level": 20,
+            "description": "When you use your Magical Cunning feature, you regain all your expended Pact Magic spell slots."
+        },
+        {
+            "name": "Dark One's Blessing",
+            "level": 3,
+            "description": "When you reduce an enemy to 0 Hit Points, you gain Temporary Hit Points equal to your Charisma modifier plus your Warlock level (minimum of 1 Tempo..."
+        },
+        {
+            "name": "Fiend Spells",
+            "level": 3,
+            "description": "The magic of your patron ensures you always have certain spells ready; when you reach a Warlock level specified in the Fiend Spells table, you ther..."
+        },
+        {
+            "name": "Dark One's Own Luck",
+            "level": 6,
+            "description": "You can call on your fiendish patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add..."
+        },
+        {
+            "name": "Fiendish Resilience",
+            "level": 10,
+            "description": "Choose one damage type, other than Force, whenever you finish a Short or Long Rest. You have Resistance to that damage type until you choose a diff..."
+        },
+        {
+            "name": "Hurl Through Hell",
+            "level": 14,
+            "description": "Once per turn when you hit a creature with an attack roll, you can try to instantly transport the target through the Lower Planes. The target must ..."
+        }
+    ],
+    "WIZARD": [
+        {
+            "name": "Spellcasting",
+            "level": 1,
+            "description": "As a student of arcane magic, you have learned to cast spells. See \"Spells\" for the rules on spellcasting. The information below details how you us..."
+        },
+        {
+            "name": "Ritual Adept",
+            "level": 1,
+            "description": "You can cast any spell as a Ritual if that spell has the Ritual tag and the spell is in your spellbook. You needn't have the spell prepared, but yo..."
+        },
+        {
+            "name": "Arcane Recovery",
+            "level": 1,
+            "description": "You can regain some of your magical energy by studying your spellbook. When you finish a Short Rest, you can choose expended spell slots to recover..."
+        },
+        {
+            "name": "Scholar",
+            "level": 2,
+            "description": "While studying magic, you also specialized in another field of study. Choose one of the following skills in which you have proficiency: Arcana, His..."
+        },
+        {
+            "name": "Wizard Subclass",
+            "level": 3,
+            "description": "You gain a Wizard subclass of your choice. The Evoker subclass is detailed after this class's description. A subclass is a specialization that gran..."
+        },
+        {
+            "name": "Ability Score Improvement",
+            "level": 4,
+            "description": "You gain the Ability Score Improvement feat (see \"Feats\") or another feat of your choice for which you qualify. You gain this feature again at Wiza..."
+        },
+        {
+            "name": "Memorize Spell",
+            "level": 5,
+            "description": "Whenever you finish a Short Rest, you can study your spellbook and replace one of the level 1+ Wizard spells you have prepared for your Spellcastin..."
+        },
+        {
+            "name": "Spell Mastery",
+            "level": 18,
+            "description": "You have achieved such mastery over certain spells that you can cast them at will. Choose a level 1 and a level 2 spell in your spellbook that have..."
+        },
+        {
+            "name": "Epic Boon",
+            "level": 19,
+            "description": "You gain an Epic Boon feat (see \"Feats\") or another feat of your choice for which you qualify. Boon of Spell Recall is recommended."
+        },
+        {
+            "name": "Signature Spells",
+            "level": 20,
+            "description": "Choose two level 3 spells in your spellbook as your signature spells. You always have these spells prepared, and you can cast each of them once at ..."
+        },
+        {
+            "name": "Evocation Savant",
+            "level": 3,
+            "description": "Choose two Wizard spells from the Evocation school, each of which must be no higher than level 2, and add them to your spellbook for free."
+        },
+        {
+            "name": "Potent Cantrip",
+            "level": 3,
+            "description": "Your damaging cantrips affect even creatures that avoid the brunt of the effect. When you cast a cantrip at a creature and you miss with the attack..."
+        },
+        {
+            "name": "Sculpt Spells",
+            "level": 6,
+            "description": "You can create pockets of relative safety within the effects of your evocations. When you cast an Evocation spell that affects other creatures that..."
+        },
+        {
+            "name": "Empowered Evocation",
+            "level": 10,
+            "description": "Whenever you cast a Wizard spell from the Evocation school, you can add your Intelligence modifier to one damage roll of that spell."
+        },
+        {
+            "name": "Overchannel",
+            "level": 14,
+            "description": "You can increase the power of your spells. When you cast a Wizard spell with a spell slot of levels 1\u20135 that deals damage, you can deal maximum dam..."
+        }
+    ]
+}

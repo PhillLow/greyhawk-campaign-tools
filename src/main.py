@@ -1,5 +1,8 @@
-import questionary
 import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+import questionary
 from rich.console import Console
 from src.engine.builder import CharacterBuilder
 from src.engine.persistence import PersistenceManager
@@ -49,22 +52,30 @@ def game_loop(char):
         dash = Dashboard(char)
         dash.render()
         
-        # Action Menu
+        # Build dynamic menu based on character capabilities
+        menu_choices = [
+            "Combat / Attacks",
+            "Edit HP (Damage/Heal)",
+            "Manage Exhaustion",
+            "Manage Status (Cond/DS/Insp)",
+            "Inventory & Equipment",
+            "Level Up / Multiclass",
+        ]
+        
+        # Only show Transform for Druids (or other classes with Wild Shape)
+        if char.can_transform:
+            menu_choices.append("Wild Shape / Transform")
+            
+        menu_choices.extend([
+            "Magic & Spells",
+            f"Rest (Short/Long) [{2 - char.short_rests_taken} SR left]", 
+            "Save Character",
+            "Return to Main Menu"
+        ])
+        
         action = questionary.select(
             "Actions:",
-            choices=[
-                "Combat / Attacks",
-                "Edit HP (Damage/Heal)",
-                "Manage Exhaustion",
-                "Manage Status (Cond/DS/Insp)",
-                "Inventory & Equipment",
-                "Level Up / Multiclass",
-                "Wild Shape / Transform", 
-                "Magic & Spells",
-                "Rest (Short/Long)", 
-                "Save Character",
-                "Return to Main Menu"
-            ]
+            choices=menu_choices
         ).ask()
         
         if action == "Combat / Attacks":
@@ -87,7 +98,7 @@ def game_loop(char):
              manage_transformation(char)
         elif action == "Magic & Spells":
              manage_magic(char)
-        elif action == "Rest (Short/Long)":
+        elif action.startswith("Rest"):
              manage_rest(char)
         elif action == "Save Character":
              path = pm.save_character(char)
@@ -107,8 +118,11 @@ def manage_combat(char):
         opts = []
         for w in equipped:
             label = f"{w.name} (Hit: +{char.calculate_attack_roll(w)})"
-            if w.mastery == WeaponMastery.NICK:
+            active_mastery = char.get_active_mastery(w)
+            if active_mastery == WeaponMastery.NICK:
                 label += " [Nick]"
+            elif active_mastery:
+                label += f" [{active_mastery.value}]"
             opts.append(label)
             
         opts.append("Unarmed Strike")
@@ -208,9 +222,10 @@ def manage_combat(char):
                  console.print(f"[bold]Damage Roll[/bold]: {dice_str} ({rolls}) + {dmg_mod} = [bold red]{total_dmg} {weapon.damage_type.name.title()}[/bold red]")
                  
                  # Show Mastery
-                 if weapon.mastery:
-                     console.print(f"[italic]Mastery ({weapon.mastery.value}): Apply effect if applicable.[/italic]")
-                     if weapon.mastery == WeaponMastery.NICK:
+                 active_mastery = char.get_active_mastery(weapon)
+                 if active_mastery:
+                     console.print(f"[italic]Mastery ({active_mastery.value}): Apply effect if applicable.[/italic]")
+                     if active_mastery == WeaponMastery.NICK:
                         console.print("[bold cyan]Nick Active: Off-hand attack valid specific for Action.[/bold cyan]")
              
              questionary.text("Press Enter...").ask()
@@ -599,11 +614,26 @@ def manage_hp(char):
         console.print(f"[green]Healed {delta} HP![/green]")
 
 def manage_rest(char):
+    # Show current short rest count
+    remaining_sr = max(0, 2 - char.short_rests_taken)
+    console.print(f"\n[dim]Short Rests remaining before next Long Rest: {remaining_sr}[/dim]")
+    
     rest_type = questionary.select("Rest Type:", choices=["Short Rest", "Long Rest", "Cancel"]).ask()
     
     if rest_type == "Short Rest":
+        # Check if exceeded limit
+        if char.short_rests_taken >= 2:
+            console.print("[yellow]⚠ You've already taken 2 Short Rests since your last Long Rest.[/yellow]")
+            console.print("[yellow]The 2024 PHB recommends 2 Short Rests per Long Rest.[/yellow]")
+            override = questionary.confirm("Proceed anyway? (DM Override)").ask()
+            if not override:
+                console.print("[dim]Short Rest cancelled.[/dim]")
+                questionary.text("Press Enter...").ask()
+                return
+        
         char.perform_short_rest()
-        console.print("[green]Short Rest: Cooldowns reset.[/green]")
+        remaining = max(0, 2 - char.short_rests_taken)
+        console.print(f"[green]Short Rest complete. {remaining} Short Rests remaining.[/green]")
         
         while True:
             # Show HD status

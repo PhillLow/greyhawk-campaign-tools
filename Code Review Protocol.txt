@@ -1,0 +1,62 @@
+﻿Standard Operating Procedure: Code Review
+1. Architectural & Contextual Compliance
+Ensure the generated code aligns with existing project standards and architecture.
+1.1 Dependency Audit
+* [ ] Library Legitimacy: Verify that all imported libraries and modules exist and are accessible in the project's package registry.
+* [ ] Redundancy Check: Confirm that new dependencies do not duplicate functionality provided by existing project libraries (e.g., ensure fetch is used if it is the project standard, rather than introducing axios).
+1.2 Style & Scope
+* [ ] Convention Adherence: Code follows the project's linter rules, naming conventions (e.g., camelCase vs. snake_case), and directory structure.
+* [ ] Scope Containment: The solution is strictly limited to the requested feature or fix and does not unnecessarily refactor unrelated code.
+2. Integrity & Security Verification
+Detecting common LLM fabrication errors and security oversights.
+2.1 API & Method Integrity (Anti-Hallucination)
+* [ ] Method Verification: Consult official documentation to verify that all called methods exist in the version of the library currently in use.
+* [ ] Deprecation Check: Ensure code utilizes current APIs and does not rely on deprecated or legacy patterns (e.g., var in JavaScript/TypeScript).
+* [ ] Import Resolution: Verify that import paths are correct (relative vs. absolute) and resolve successfully within the project structure.
+2.2 Error Handling & Resilience
+* [ ] Null/Boundary Safety: Verify robust handling of null, undefined, or empty inputs.
+* [ ] Exception Management: Ensure try/catch blocks are implemented where necessary and that errors are logged or handled gracefully (no silent failures).
+* [ ] Edge Case Coverage: Logic accounts for boundary conditions (e.g., empty collections, zero/negative values, leap years).
+2.3 Security Protocols
+* [ ] Credential Scanning: No hardcoded secrets, API keys, or tokens are present.
+* [ ] Injection Prevention: User input is sanitized before use in SQL queries, shell commands, or DOM manipulation.
+* [ ] Configuration Safety: Dangerous flags (e.g., SSL verify=False, shell=True, dangerouslySetInnerHTML) are disabled unless explicitly justified and documented.
+3. Algorithmic Logic & Optimization
+Technical assessment of efficiency and correctness.
+* [ ] Termination Logic: Loops and recursive functions contain guaranteed exit conditions.
+* [ ] Complexity Analysis: Algorithms are optimized for time and space complexity (avoiding unnecessary O(n²) operations).
+* [ ] Type Safety: (For typed languages) Generic any types are avoided in favor of strict typing.
+* [ ] Regular Expression Validation: All Regex patterns have been independently tested against valid and invalid strings using an external tool.
+4. Automated Verification Strategies
+Standardized prompts for LLM self-correction.
+When in doubt, use these prompts to perform a secondary audit:
+Verification Target
+	Standardized Prompt
+	Edge Case Discovery
+	"Act as a QA Engineer. Analyze this code and identify 3 specific input scenarios where execution might fail or produce unexpected results."
+	Security Audit
+	"Act as a Security Analyst. Review this code for vulnerabilities, specifically focusing on input validation, injection risks, and sensitive data exposure."
+	API Validation
+	"Verify the existence of method .xyz() in version [Version Number] of [Library Name]. Cite the documentation if possible."
+	Test Generation
+	"Generate a unit test suite for this code, focusing on failure states and invalid inputs."
+	Appendix: Comparative Error Taxonomy
+Reference for identifying origin-specific defects.
+Defect Category
+	Human Developer Tendencies
+	AI Model Tendencies
+	Syntax
+	Typos, missing punctuation.
+	Syntactically perfect; high confidence.
+	Dependencies
+	Generally accurate.
+	Prone to fabrication (non-existent libraries).
+	Logic
+	Sound but potentially unorganized.
+	Plausible but subtly incorrect (logical gaps).
+	Security
+	Omitted due to oversight.
+	Omitted to prioritize functional speed.
+	Review Tone
+	Requires constructive feedback.
+	Requires objective, rigorous validation.

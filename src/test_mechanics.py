@@ -130,5 +130,24 @@ class TestMechanics(unittest.TestCase):
         is_shield_equipped = next((i.equipped for i in self.char.inventory if i.name == "Shield"), False)
         self.assertTrue(is_shield_equipped)
 
+    def test_core_actions_and_conditions(self):
+        """Verify the enums represent the comprehensive 2024 playing-the-game.md rules."""
+        from src.models.mechanics import ActionType, Condition
+        
+        # Verify 12 core actions exist
+        actions = list(ActionType)
+        self.assertEqual(len(actions), 12)
+        self.assertIn(ActionType.INFLUENCE, actions)
+        self.assertIn(ActionType.STUDY, actions)
+        
+        # Character condition test
+        self.char.conditions.append(Condition.INVISIBLE)
+        self.char.conditions.append(Condition.POISONED)
+        
+        # Advantage state verification from character.py
+        # Invisible gives advantage (+1), Poisoned gives disadvantage (-1) -> Normal (0)
+        state = self.char.get_advantage_state("attack")
+        self.assertEqual(state, "normal")
+
 if __name__ == "__main__":
     unittest.main()

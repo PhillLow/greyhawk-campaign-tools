@@ -24,3 +24,4 @@ class Spell(BaseModel):
     ritual: bool = False
     description: str
     prepared: bool = False
+    classes: List[str] = []
